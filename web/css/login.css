@@ -1,0 +1,21 @@
+.loginTop {font-weight: 900;font-size: larger}
+.control-lable{
+    text-align: right;
+}
+.text-danger{
+    font-size: 0.875em;
+    font-weight: 200;
+}
+.changeCaptcha{
+    font-weight: 200;
+    font-size: 0.875em;
+}
+.input-group-addon{
+    color: #999999;
+}
+
+
+
+
+
+

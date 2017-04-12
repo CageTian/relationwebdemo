@@ -1,0 +1,224 @@
+{
+  "nodes": [
+    {
+      "id": "Neethi K. S.",
+      "group": 5
+    },
+    {
+      "id": "Kurt Mehlhorn",
+      "group": 5
+    },
+    {
+      "id": "Jay Mahadeokar",
+      "group": 5
+    },
+    {
+      "id": "Yijie Han",
+      "group": 5
+    },
+    {
+      "id": "Xiaojun Shen",
+      "group": 5
+    },
+    {
+      "id": "V. Yugandhar",
+      "group": 5
+    },
+    {
+      "id": "G. Sajith",
+      "group": 5
+    },
+    {
+      "id": "K. V. R. C. N. Kishore",
+      "group": 5
+    },
+    {
+      "id": "Sudarshan Banerjee",
+      "group": 5
+    },
+    {
+      "id": "N. Malahal Rao",
+      "group": 5
+    },
+    {
+      "id": "Pramod Chandra P. Bhatt",
+      "group": 5
+    },
+    {
+      "id": "V. C. Prasad",
+      "group": 5
+    },
+    {
+      "id": "P. C. P. Bhatt",
+      "group": 5
+    },
+    {
+      "id": "Krzysztof Diks",
+      "group": 5
+    },
+    {
+      "id": "Torben Hagerup",
+      "group": 5
+    },
+    {
+      "id": "Tomasz Radzik",
+      "group": 5
+    },
+    {
+      "id": "Sanjeev Saxena",
+      "group": 1
+    }
+  ],
+  "links": [
+    {
+      "source": "Kurt Mehlhorn",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Jay Mahadeokar",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Neethi K. S.",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Yijie Han",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Yijie Han",
+      "value": 4,
+      "target": "Xiaojun Shen"
+    },
+    {
+      "source": "Sanjeev Saxena",
+      "value": 4,
+      "target": "Xiaojun Shen"
+    },
+    {
+      "source": "V. Yugandhar",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "K. V. R. C. N. Kishore",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Sudarshan Banerjee",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Sanjeev Saxena",
+      "value": 4,
+      "target": "N. Malahal Rao"
+    },
+    {
+      "source": "G. Sajith",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Sanjeev Saxena",
+      "value": 4,
+      "target": "Pramod Chandra P. Bhatt"
+    },
+    {
+      "source": "Pramod Chandra P. Bhatt",
+      "value": 4,
+      "target": "V. C. Prasad"
+    },
+    {
+      "source": "P. C. P. Bhatt",
+      "value": 4,
+      "target": "Krzysztof Diks"
+    },
+    {
+      "source": "P. C. P. Bhatt",
+      "value": 4,
+      "target": "Torben Hagerup"
+    },
+    {
+      "source": "P. C. P. Bhatt",
+      "value": 4,
+      "target": "Tomasz Radzik"
+    },
+    {
+      "source": "P. C. P. Bhatt",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Krzysztof Diks",
+      "value": 4,
+      "target": "Torben Hagerup"
+    },
+    {
+      "source": "Krzysztof Diks",
+      "value": 4,
+      "target": "V. C. Prasad"
+    },
+    {
+      "source": "Krzysztof Diks",
+      "value": 4,
+      "target": "Tomasz Radzik"
+    },
+    {
+      "source": "Krzysztof Diks",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Torben Hagerup",
+      "value": 4,
+      "target": "V. C. Prasad"
+    },
+    {
+      "source": "Torben Hagerup",
+      "value": 4,
+      "target": "Tomasz Radzik"
+    },
+    {
+      "source": "Torben Hagerup",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "V. C. Prasad",
+      "value": 4,
+      "target": "Tomasz Radzik"
+    },
+    {
+      "source": "V. C. Prasad",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Tomasz Radzik",
+      "value": 4,
+      "target": "Sanjeev Saxena"
+    },
+    {
+      "source": "Sanjeev Saxena",
+      "value": 4,
+      "target": "P. C. P. Bhatt"
+    },
+    {
+      "source": "Sanjeev Saxena",
+      "value": 4,
+      "target": "V. C. Prasad"
+    },
+    {
+      "source": "P. C. P. Bhatt",
+      "value": 4,
+      "target": "V. C. Prasad"
+    }
+  ]
+}

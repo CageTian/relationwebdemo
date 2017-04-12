@@ -1,0 +1,39 @@
+/*schooler*/
+.title{
+    top:13%;
+    font-size:9em;
+}
+/*图片*/
+.img_conceal{
+    visibility:hidden;
+    display: none !important;
+}
+/*搜索框*/
+.search{
+    left:1%;top:13%;
+    width: 60%;
+    margin: 0 20% 0 20%;
+    text-align: center;
+}
+/* Form wrapper styling */
+.form-wrapper {
+    width: 90%;
+}
+/* Form text input */
+.form-wrapper input {
+    width: 77%;
+    padding: 2px 1px;
+    font: bold 1em 'lucida sans', 'trebuchet MS', 'Tahoma';
+    border-radius: 3px 0 0 3px;
+    margin: 0;
+    font-size: 1em;
+}
+/* Form submit button */
+.form-wrapper button {
+    position: absolute;left: 70%;
+    float: left;
+    margin: 0;
+    width: 20%;
+    border-radius: 0 3px 3px 0;
+    font-size: 1em;
+}
