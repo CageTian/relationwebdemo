@@ -166,7 +166,7 @@
                         </h4>
                     </div>
                     <div class="panel-body tree" style="overflow: auto">
-                        <iframe src="${pageContext.request.contextPath}/jsps/coworker_circle.jsp" width="350" height="350" frameborder="0"></iframe>
+                        <iframe src="${pageContext.request.contextPath}/jsps/coworker_circle.jsp" width="400" height="150" frameborder="0"></iframe>
                     </div>
 
                 </div>
@@ -180,7 +180,7 @@
                     </h4>
                 </div>
                 <div class="panel-body tree" style="overflow: auto">
-                    <iframe src="${pageContext.request.contextPath}/jsps/tree.jsp" width="450" height="450" frameborder="0"></iframe>
+                    <iframe src="${pageContext.request.contextPath}/jsps/tree.jsp" width="1000" height="400" frameborder="0"></iframe>
                 </div>
 
             </div>

@@ -100,6 +100,9 @@ d3.json("/relationwebdemo/ScholarServlet?method=getAjaxTreeJson&advisor="+adviso
         .attr("transform", function(d) { return d.x < 180 ? "translate(5)" : "rotate(180)translate(-5)"; });
 */
     //点击的话，隐藏或者显示子节点
+    node.append("title")
+        .text(function(d) { return d.name; });
+
     function nodeClick(d)
     {
         if (d.children)

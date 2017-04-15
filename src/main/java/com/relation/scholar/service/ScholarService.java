@@ -70,10 +70,10 @@ public class ScholarService {
      */
     public JSONObject getCollaboratorNet(int level,String advisor) {
         List<sqlExpression>exprList=new ArrayList<sqlExpression>();
-        exprList.add(new sqlExpression("all_author","like","%"+advisor+"%"));
+        exprList.add(new sqlExpression("all_author","like","%#"+advisor+"#% or all_author like"+advisor+"#%"));
         List<Map<String, Object>> mapList= null;
         try {
-            mapList = scholarDao.getCollaborator(exprList);
+            mapList = scholarDao.getCollaborator(advisor);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -120,7 +120,7 @@ public class ScholarService {
         exprList.add(new sqlExpression("all_author","like","%"+advisor+"%"));
         List<Map<String, Object>> mapList= null;
         try {
-            mapList = scholarDao.getCollaborator(exprList);
+            mapList = scholarDao.getCollaborator(advisor);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -171,7 +171,7 @@ public class ScholarService {
     public JSONObject getCollaboratorCircle(String cop_name) throws SQLException {
         List<sqlExpression>exprList=new ArrayList<sqlExpression>();
         exprList.add(new sqlExpression("all_author","like","%"+cop_name+"%"));
-        List<Map<String, Object>> mapList=scholarDao.getCollaborator(exprList);
+        List<Map<String, Object>> mapList=scholarDao.getCollaborator(cop_name);
 
         Map<String,String> cop=new HashMap<String, String>();
         for(Map<String, Object> map:mapList){
@@ -195,7 +195,7 @@ public class ScholarService {
     }
     @Test
     public void copCircleTest() throws SQLException {
-        String name="Sanjeev Saxena";
+        String name="feng xia";
         System.out.println(getCollaboratorCir(name));
     }
 }

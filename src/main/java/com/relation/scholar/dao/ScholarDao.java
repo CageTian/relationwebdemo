@@ -84,27 +84,26 @@ public class ScholarDao{
 
     /**
      * 获得合作者List（所有合作者，合作时间）
-     * @param exprList
+     * @param advisor
      * @return
      * @throws SQLException
      */
-    public List<Map<String, Object>> getCollaborator(List<sqlExpression>exprList) throws SQLException {
-        StringBuilder whereSql=new StringBuilder(" WHERE 1=1 ");
-        List<Object> params=new ArrayList<Object>();
-        for(sqlExpression expr:exprList){
-            whereSql.append(" and ").append(expr.getName()).append(" ").append(expr.getOperator()).append(" ");
-            if(!expr.getOperator().equals("is null")) {
-                whereSql.append("?");
-                params.add(expr.getValue());
-            }
-        }
+    public List<Map<String, Object>> getCollaborator(String advisor) throws SQLException {
+
         /*
 		 * 3. 总记录数
 		 */
-        String sql = "select * from collaborator" + whereSql +" order by year DESC";
+
+        String sql = "select * from collaborator WHERE all_author like ? or all_author like ? order by year DESC limit ?,?";
+        System.out.println(sql);
+        List<Object> params=new ArrayList<Object>();
+        params.add("%#"+advisor+"#%");
+        params.add(advisor+"#%");
+        params.add(0);
+        params.add(20);
         List<Map<String, Object>> list  = qr.query(sql, new MapListHandler(), params.toArray());
 
-        //System.out.println(list);
+        System.out.println(list.size());
         return list;
     }
 

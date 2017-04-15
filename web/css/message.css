@@ -1,0 +1,66 @@
+/* 按钮组 */
+@media screen and (min-width: 860px) {
+    .m_pl {
+        float: left;
+        width: 50% !important;
+    }
+
+    .btn-toolbar {
+        padding: 0 0 0 40%;
+    }
+
+    .m_pr {
+        float: left;
+    }
+}
+.p_page {
+    float: left;
+    padding: 5px 10px 0 10px;
+}
+
+.p_input{
+    width: 30%;
+    float: left;
+    height: 30px;
+    margin: 0 10px 0 0;
+}
+/*信息面板*/
+.panel:hover{
+    box-shadow: 0 0 10px 6px #eeeeee;
+}
+.panel-body{
+    padding: 0;
+    margin: 0;
+}
+.panel-heading span1{
+    font-weight: 600;
+    font-size: 1.2em;
+    color: #333333;
+}
+.panel-body .col-sm-4{
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #4b586e;
+}
+.list-group-item:hover{
+    box-shadow: 0 0 8px 2px #ddeedf;
+}
+.col-sm-4 span{
+    font-size: 1.2rem;
+    color: #999999;
+}
+/*内容信息*/
+.list-group{
+    margin: 20px 0 0 0;
+    padding: 0;
+}
+.con{
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+.content{
+    color: #020051;
+    font-size: 1.3rem;
+}
