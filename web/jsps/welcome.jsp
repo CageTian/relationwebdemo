@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="http://www.bootcss.com/p/buttons/css/buttons.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/guide_serch.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/welcome1.css">
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
 
     <style type="text/css">
         body {
@@ -229,10 +231,12 @@
         $(function() {/*Map<String(Cookie名称),Cookie(Cookie本身)>*/
             // 获取cookie中的用户名
             var username = window.decodeURI("${cookie.username.value}");
-            if("${requestScope.user.username}") {
-                username = "${requestScope.user.username}";
+            if("${sessionScope.sessionUser.username}") {
+                username = "${sessionScope.sessionUser.username}";
+                $("#showWord").text(username);
             }
             $("#username").val(username);
+
         });
     </script>
 
@@ -264,7 +268,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#" id="Button1" value="signup" onclick="window.open('user/regist.jsp')"><span class="glyphicon glyphicon-user" ></span> Sign up</a>
+                        <a href="#" id="Button1" value="signup" onclick="window.open('${pageContext.request.contextPath}/jsps/user/regist.jsp')"><span class="glyphicon glyphicon-user" ></span> <t id="showWord">Sign up</t></a>
                     </li>
                     <li >
                         <a href="#" data-toggle="modal" data-target="#mymodal-data" id="Button2" value="login" onclick="ShowDiv('MyDivLogin','fade')"><span class="glyphicon glyphicon-log-in" ></span> Log in</a>
@@ -393,8 +397,7 @@
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
-<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+
 <script src=" ${pageContext.request.contextPath}/js/login.js" type="text/javascript"></script>
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

@@ -40,7 +40,8 @@ public class UserService {
     }
     public User login(User user){
         try {
-            User usertmp=userDao.findUser("username",user.getUsername());
+            User usertmp=new User();
+            usertmp=userDao.findUser("username",user.getUsername());
             if(usertmp.getUsername()==null)
                 return null;
             System.out.println(usertmp);

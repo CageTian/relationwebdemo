@@ -161,8 +161,8 @@ public class LoginServlet extends BaseServlet {
                 Cookie cookie = new Cookie("username", loginname);
                 cookie.setMaxAge(60 * 60 * 24 * 10);//保存10天
                 resp.addCookie(cookie);
-                System.out.println("loginsccuess");
-                RequestDispatcher requestDispatcher=req.getRequestDispatcher("/jsps/index.jsp");
+                //System.out.println("loginsccuess");
+                RequestDispatcher requestDispatcher=req.getRequestDispatcher("/jsps/welcome.jsp");
                 requestDispatcher.forward(req,resp);
                 return "r:/index.jsp";//重定向到主页
             }
