@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="<c:url value='/css/message.css'/>" type="text/css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/guide_serch.css">
 </head>
+<style type="text/css">
+    body{
+        background-image: url(${pageContext.request.contextPath}/resource/background.jpg);
+        background-attachment: fixed;
+    }
+</style>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="touming">
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">

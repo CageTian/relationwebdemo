@@ -41,11 +41,88 @@
         stroke: #fff;
         stroke-width: 1.5px;
     }
+body{
+    background-image: url(${pageContext.request.contextPath}/resource/starsky.jpg);
+    background-attachment: fixed;
+}
+h4,h3{
+    color: #cecece;
+}
+.ac-tooltip{
+    position:absolute;
+    visibility:hidden;
+    border : 0px solid #999;
+    border-radius: 5px;
+    background-color: #cecece;
+    opacity: .8;
+    padding: 7px;
+    transition: top 200ms,left 200ms;
+    -moz-transition:  top 200ms,left 200ms;  /* Firefox 4 */
+    -webkit-transition:  top 200ms,left 200ms; /* Safari 和 Chrome */
+    -o-transition:  top 200ms,left 200ms;
+    font-size: small;
+}
+.ac-tooltip .ac-title{
+    margin: 0;
+    padding: 2px 0;
+}
+.ac-tooltip .ac-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.ac-tooltip li{
+    line-height:  12px;
+}
 
+.lanren {
+    width: 300px;height:100px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.flip-3d {
+    border-radius:50%;
+    width: 33%;
+    float: left;
+}
+.flip-3d figure {
+    border-radius:50%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: 1s transform;
+    font-size: 1.6rem;
+    margin: 7px;
+}
+.flip-3d figure img {border-radius:50%; width: 100%; height: auto; }
+.flip-3d figure figcaption {border-radius:50%; position: absolute; width: 100%; height: 86px; top: 0;  transform: rotateY(.5turn) translateZ(1px);
+    background: rgba(255,255,255,0.9); text-align: center; padding-top: 45%; opacity: 0.6; transition: 1s .5s opacity; }
+.flip-3d:hover figure { transform: rotateY(.5turn);
+}
+.flip-3d:hover figure figcaption { opacity: 1; }
+.flip-3d figure:after { content: " "; display: block; height: 8vw; width: 100%; transform: rotateX(90deg); background-image: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 100%); }
+@media screen and (max-width: 800px) {
+    #flip-3d {
+        perspective-origin: center top;
+    }
 
+    div#flip-3d figure {
+        float: none;
+        width: 50%;
+        margin: 0 auto;
+        margin-bottom: 12vw;
+    }
 
+    .flip-3d figure figcaption {
+        font-size: 0.8rem;
+    }
+
+    div#flip-3d figure:last-child {
+        display: none;
+    }
+}
 </style>
-<body>
+<body >
+
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="touming">
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
         <div class="container">
@@ -56,7 +133,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">SCHOLAR</a>
+                <a class="navbar-brand" href="../welcome1.jsp">SCHOLAR</a>
             </div>
             <div id="searchlocation">
                 <form class="navbar-form navbar-left" role="form" action="<c:url value='/ScholarServlet?'/>" method="get" id="searchForm">
@@ -152,41 +229,78 @@
 <div class="container" style="margin-top:50px;">
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-2">
+        <div class="col-sm-5">
             <div class="row">
-                <img src="${pageContext.request.contextPath}/resource/profile.jpg" class="img-responsive">
-                <br><h5>advisee:<h id="advisee1">${requestScope.get("scholar").advisee}</h>;</h5>
-                <br><h5>advisor:<h id="advisor">${requestScope.get("scholar").advisor}</h>;</h5>
-            </div>
-            <div class="row">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            Coworkers
-                        </h4>
-                    </div>
-                    <div class="panel-body tree" style="overflow: auto">
-                        <iframe src="${pageContext.request.contextPath}/jsps/coworker_circle.jsp" width="400" height="150" frameborder="0"></iframe>
-                    </div>
-
+                <div class="col-sm-4" style="margin-top: 7%">
+                    <img src="${pageContext.request.contextPath}/resource/profile1.jpg" class="img-responsive">
                 </div>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h>;</h3>
+                    </div>
+                    <div class="row"><h3>Institution:<h id="advisor">${requestScope.get("scholar").advisor}</h>;</h3></div>
+                    <div class="row lanren">
+                        <div class="flip-3d">
+                            <figure > <img src="${pageContext.request.contextPath}/resource/startyear.jpg">
+                                <figcaption id="test">year</figcaption>
+                            </figure>
+                        </div>
+
+                        <div class="flip-3d">
+                            <figure> <img src="${pageContext.request.contextPath}/resource/paper.jpg">
+                                <figcaption>paper</figcaption>
+                            </figure>
+                        </div>
+                        <div class="flip-3d">
+                            <figure> <img src="${pageContext.request.contextPath}/resource/collaborator.jpg">
+                                <figcaption>coworkes</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                    <!--h5>advisor:<h id="advisor">${requestScope.get("scholar").advisor}</h>;</h5>
+                    <h5>conpany:</h5-->
             </div>
         </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
+        <div class="col-sm-5" id="paperNum">
+            <!--div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        Coworkers
+                    </h4>
+                </div>
+                <div class="panel-body tree" style="overflow: auto">
+                    <iframe src="/jsps/coworker_circle.jsp" width="400" height="150" frameborder="0"></iframe>
+                </div>
+
+            </div-->
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5" id="student">
+            <hr><h4>student</h4><hr>
+            <!--div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         Advisor-advisee
                     </h4>
                 </div>
                 <div class="panel-body tree" style="overflow: auto">
-                    <iframe src="${pageContext.request.contextPath}/jsps/tree.jsp" width="1000" height="400" frameborder="0"></iframe>
+                    <iframe src="/jsps/tree.jsp" width="1000" height="400" frameborder="0"></iframe>
                 </div>
 
-            </div>
+            </div-->
         </div>
-        <div class="col-sm-4">
-            <div class="panel panel-default">
+        <div class="col-sm-5" >
+            <hr><h4>coworker</h4><hr>
+            <div id="coworker" style="margin-left: 10%; overflow:visible"></div>
+            <!--div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         Coworker Net
@@ -195,7 +309,24 @@
                 <div class="panel-body web" style="overflow: auto">
 
                 </div>
-            </div>
+            </div-->
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+    <!--div class="row">advisor-advisee tree</div-->
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10" id="tree">
+            <hr><h4>advisor-advisee tree</h4><hr>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <!--div class="row">coworkers net</div-->
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 web" >
+            <hr><h4>coworkers net</h4><hr>
         </div>
         <div class="col-sm-1"></div>
     </div>
@@ -209,11 +340,20 @@
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/web.js" type="text/javascript"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+<script src="https://a.alipayobjects.com/g/datavis/g2/2.3.0/g2.js"></script>
 
+<script src="yukuai.json"></script>
+<script src="jizuobiao.json"></script>
+<script src="paper.json"></script>
+<script src="tree.json"></script>
+
+
+<script src=" ${pageContext.request.contextPath}/js/diagram.js" type="text/javascript"></script>
 <script src=" ${pageContext.request.contextPath}/js/login.js" type="text/javascript"></script>
 
 </body>

@@ -1,3 +1,6 @@
+
+
+
 /* 导航 */
 header{
     padding: 0;
@@ -32,17 +35,17 @@ header{
     cursor: pointer;
 }
 .r_nbox a{
-    color: #6F6F6F;
+    color: #e3e3e3;
     font-size: 0.9em;
 }
 .r_nbox a:hover{
     text-decoration: none!important;
-    color: #4b586e;
+    color: #e3e3e3;
     font-weight: 500;
 }
 /*. 人物显示 */
 .col-sm-8{
-    border-top:solid 1px #dddddd ;
+    /*border-top:solid 1px #dddddd ;*/
     padding: 10px 0 15px 0;
 }
 /* 照片 */
@@ -65,34 +68,35 @@ header{
 }
 /* 介绍 */
 h5 a{
-    color: #4b586e;
+    color: #0000b0;
     font-weight: 700;
 }
 h5 a:hover{
     text-decoration: none!important;
-    color: #2f1b41;
+    color: #1d8af5;
 }
 /* 学生 */
 .r_info{
-     color: darkgrey;
+     color: grey;
      font-size: 0.8em;
  }
 .r_info span{
     font-weight: 600;
-    color: #872341;
+    color: #c85c09;
 }
 /* 老师 */
 .r_advisor span{
     font-size: 0.95em;
-    color:#6F6F6F;
+    color: grey;
 }
 .r_advisor a{
-    color: #6F6F6F;
+    color: grey;
     font-size: 0.9em;
 }
 .r_advisor a:hover{
-    border: solid 1px #dddddd;
-    box-shadow: 0 0 2px 1px #dddddd;
+    color: #b3b3b3;
+    border: solid 1px #c9c9c9;
+    box-shadow: 0 0 2px 1px #7c7c7c;
 }
 .r_beg{
     margin: 20px 0 0 0;
@@ -110,4 +114,21 @@ h5 a:hover{
     float: left;
     height: 30px;
     margin: 0 10px 0 0;
+}
+hr{
+    height: 1px;
+    border: none;
+    background-color: #0f7d98;
+}
+.m_content{
+    padding: 5px;
+}
+.intro {
+    padding:5px;
+    border:1px solid white;
+    border-radius: 5px;
+    background: white;
+    box-shadow:0 0 7px white;
+
+    filter:alpha(Opacity=80);-moz-opacity:0.8;opacity: 0.8;
 }

@@ -2,7 +2,6 @@ package com.relation.admin.Dao;
 
 import com.relation.admin.domain.UserReq;
 import com.relation.pager.PageBean;
-import com.relation.pager.sqlExpression;
 import com.relation.scholar.domain.Scholar;
 import com.relation.utils.JDBC.TxQueryRunner;
 import org.apache.commons.dbutils.QueryRunner;
