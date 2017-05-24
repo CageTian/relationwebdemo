@@ -4,11 +4,8 @@ import com.relation.pager.PageBean;
 import com.relation.pager.sqlExpression;
 import com.relation.scholar.domain.Scholar;
 import com.relation.utils.JDBC.TxQueryRunner;
-import net.sf.json.JSONObject;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.*;
-
-import org.junit.Test;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -90,12 +87,8 @@ public class ScholarDao{
      */
     public List<Map<String, Object>> getCollaborator(String advisor) throws SQLException {
 
-        /*
-		 * 3. 总记录数
-		 */
-
         String sql = "select * from collaborator WHERE all_author like ? or all_author like ? order by year DESC limit ?,?";
-        System.out.println(sql);
+        //System.out.println(sql);
         List<Object> params=new ArrayList<Object>();
         params.add("%#"+advisor+"#%");
         params.add(advisor+"#%");
@@ -103,7 +96,7 @@ public class ScholarDao{
         params.add(20);
         List<Map<String, Object>> list  = qr.query(sql, new MapListHandler(), params.toArray());
 
-        System.out.println(list.size());
+        //System.out.println(list.size());
         return list;
     }
 
@@ -137,5 +130,53 @@ public class ScholarDao{
         }
         //System.out.println(mapList);
         return mapList;
+    }
+
+    /**
+     * 获得学者年份与发表论文数目
+     * @param advisee
+     * @return
+     */
+    public Map<String, Object> getPaperDetail(String advisee){
+        String sql="select paper_detail from advisee where advisee=? ";
+        try {
+            return qr.query(sql,new MapHandler(),advisee);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 学者与其老师合作次数
+     * @param advisee
+     * @return
+     */
+    public Map<String, Object> getAdviseeCopDetail(String advisee){
+        String sql="select advisor_cop_detail from advisee where advisee=? ";
+        try {
+            return qr.query(sql,new MapHandler(),advisee);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 学者与其合作者合作情况
+     * @param advisee
+     * @return
+     */
+    public Map<String, Object> getColCopDetail(String advisee){
+        String sql="select col_cop_detail from advisee where advisee=? ";
+        try {
+            return qr.query(sql,new MapHandler(),advisee);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

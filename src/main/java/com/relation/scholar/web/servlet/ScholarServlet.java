@@ -90,7 +90,16 @@ public class ScholarServlet extends BaseServlet {
         response.getWriter().write(scholarService.getCollaboratorCir(request.getParameter("advisor")).toString());
     }
     public void getAjaxTreeJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getMentorTree(3,request.getParameter("advisor")).toString());
+        response.getWriter().write(scholarService.getMentorTree(3,request.getParameter("advisee")).toString());
+    }
+    public void getAjaxPaperDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.getWriter().write(scholarService.getPaperDetail(request.getParameter("advisee")).toString());
+    }
+    public void getAjaxAdvisorCopDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.getWriter().write(scholarService.getAdvisorDetail(request.getParameter("advisee")).toString());
+    }
+    public void getAjaxColCopDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.getWriter().write(scholarService.getColDetail(request.getParameter("advisee")).toString());
     }
 }
 

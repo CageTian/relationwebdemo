@@ -61,8 +61,6 @@ public class ScholarService {
     }
     /**
      * 得到学者合作网
-     * 未完成:去重时考虑键值互换；
-     *        合作次数；
      * @param level
      * @param advisor
      * @return
@@ -160,6 +158,51 @@ public class ScholarService {
         jsonObject.put("links",JSONArray.fromObject(link));
         return jsonObject;
     }
+    public JSONArray getPaperDetail(String advisee){
+        JSONArray jsonArray=new JSONArray();
+        Map map=scholarDao.getPaperDetail(advisee);
+        String s=(String) map.get("paper_detail");
+        String[] year=s.split(",");
+        for(String y:year){
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("year",y.substring(0,4));
+            jsonObject.put("number",Integer.parseInt(y.substring(5)));
+            jsonArray.add(jsonObject);
+        }
+        jsonArray.remove(0);
+        return jsonArray;//第一个jsonObeject是开始年份和总论文数
+    }
+    public JSONArray getAdvisorDetail(String advisee){
+        JSONArray jsonArray=new JSONArray();
+        Map map=scholarDao.getAdviseeCopDetail(advisee);
+        String s=(String) map.get("advisor_cop_detail");
+        String[] year=s.split(",");
+        for(String y:year){
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("year",y.substring(0,4));
+            jsonObject.put("number",Integer.parseInt(y.substring(5)));
+            jsonArray.add(jsonObject);
+        }
+        return jsonArray;
+    }
+    public JSONArray getColDetail(String advisee){
+        JSONArray jsonArray=new JSONArray();
+        Map map=scholarDao.getColCopDetail(advisee);
+        String s=(String) map.get("col_cop_detail");
+        String[] year=s.split(",");
+        int count=0;
+        for(String y:year){
+            if(count<=20){
+                count++;
+                JSONObject jsonObject=new JSONObject();
+                jsonObject.put("coworker",y.substring(0,y.indexOf(":")));
+                jsonObject.put("times",Integer.parseInt(y.substring(y.indexOf(":")+1)));
+                jsonArray.add(jsonObject);
+            }
+            else break;
+        }
+        return jsonArray;
+    }
 
     /**
      * 获得学者合作圈
@@ -197,5 +240,9 @@ public class ScholarService {
     public void copCircleTest() throws SQLException {
         String name="feng xia";
         System.out.println(getCollaboratorCir(name));
+    }
+    @Test
+    public void paperTest(){
+        System.out.println(getColDetail("feng xia"));
     }
 }
