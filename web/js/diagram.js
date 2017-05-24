@@ -313,3 +313,70 @@ $(function() {
 
 
 //coworker_times
+
+//柱 学者和老师的合作情况
+var data_teacher = [
+    {year: '1996', number: 0},
+    {year: '1997', number: 2},
+    {year: '1998', number: 1},
+    {year: '1999', number: 0},
+    {year: '2000', number: 5},
+    {year: '2001', number: 10},
+    {year: '2002', number: 0},
+    {year: '2006', number: 2},
+    {year: '2007', number: 23},
+    {year: '2009', number: 18},
+    {year: '2015', number: 1},
+    {year: '2016', number: 9}
+];
+var Stat = G2.Stat;
+var chart = new G2.Chart({
+    id : 'teac_time',
+    forceFit: true,
+    height: 450
+});
+var Frame = G2.Frame;
+var frame = new Frame(data_teacher);
+frame = Frame.sort(frame, 'release');
+chart.source(frame, {
+    year: {
+        alias: 'year',
+        range: [0, 1],
+        fill: '#cecece', // 文本的颜色
+        fontSize: '12', // 文本大小
+        fontWeight: 'normal' // 文本粗细
+    },
+    number: {
+        alias: 'times',
+        fill: '#cecece', // 文本的颜色
+        fontSize: '12', // 文本大小
+        fontWeight: 'normal' // 文本粗细
+
+    }
+});
+chart.axis('year', {
+    labels: {
+        //autoRotate: true | false, // 文本是否允许自动旋转
+        label: {
+            textAlign: 'center', // 文本对齐方向，可取值为： left center right
+            fill: '#cecece', // 文本的颜色
+            fontSize: '12', // 文本大小
+            fontWeight: 'normal' // 文本粗细
+            //rotate: 30 // 文本旋转角度
+        }
+    }
+});
+chart.axis('number', {
+    labels: {
+        //autoRotate: true | false, // 文本是否允许自动旋转
+        label: {
+            textAlign: 'center', // 文本对齐方向，可取值为： left center right
+            fill: '#cecece', // 文本的颜色
+            fontSize: '12', // 文本大小
+            fontWeight: 'normal'// 文本粗细
+            //rotate: 30 // 文本旋转角度
+        }
+    }
+});
+chart.interval().position('year*number').color('#de00da');
+chart.render();

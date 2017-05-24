@@ -26,16 +26,26 @@
     <link rel="stylesheet" type="text/css" href="<c:url value='/css/login.css'/>">
     <link rel="stylesheet" href="http://www.bootcss.com/p/buttons/css/buttons.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/guide_serch.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/welcome1.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/welcome.css">
 
 
     <style type="text/css">
-        body {
-            position: relative;
-            margin: 0;
-            overflow: hidden;
-        }
 
+        html{height:100%;}
+        body {
+            /*position: absolute;*/
+            overflow: scroll;
+            margin: 0;
+            /*overflow: hidden;*/
+            height:100%;
+        }
+        #canvas3d{
+            position: absolute;
+            top:0%;
+            border: none;
+            width:100%;
+            height:100%;
+        }
         .intro-container {
             position: absolute;
             top: 50%;
@@ -173,6 +183,7 @@
 
         .sky-container {
             position: absolute;
+            z-index:10;
             color: white;
             text-transform: uppercase;
             margin: 0 auto;
@@ -222,6 +233,11 @@
         }
 
 
+.next{
+    position: absolute;
+    top:100%;
+    width: 100%;
+}
 
 
     </style>
@@ -230,65 +246,126 @@
 
 </head>
 
-<body>
+<body >
 
 <%@include file="/jsps/pager/header.jsp" %>
 
 
 <!-- This pen isn't a fan of small view heights, check it out in  fullpage view for optimal viewing	 -->
-<div class="x-mark">
-    <div class="container">
-        <div class="left"></div>
-        <div class="right"></div>
-    </div>
-</div>
-<div class="intro-container">
-
-    <h1>SCHOLAR</h1>
-
-    <div class="m_button shift-camera-button">
-        <div class="border">
-            <div class="left-plane"></div>
-            <div class="right-plane"></div>
+<div id="canvas3d">
+    <div class="x-mark">
+        <div class="container">
+            <div class="left"></div>
+            <div class="right"></div>
         </div>
-        <div class="text">About Us</div>
+    </div>
+    <div class="intro-container">
+
+        <h1>SHIFU</h1>
+
+        <div class="m_button shift-camera-button">
+            <div class="border">
+                <div class="left-plane"></div>
+                <div class="right-plane"></div>
+            </div>
+            <div class="text">About Us</div>
+        </div>
+
+        <div class="search">
+            <form class="form-wrapper cf" role="form" action="<c:url value='/ScholarServlet?'/>" method="get" id="searchForm">
+
+                <input  type="hidden" name="method" value="findByAdvisee" />
+                <input class="st"  type="text" name="advisee" placeholder=" scholar,paper,field,organization" />
+                <%--Pages:<input type="text" name="pc" value="1" /><br>--%>
+                <button type="submit" value="search" >search</button>
+
+            </form>
+        </div>
     </div>
 
-    <div class="search">
-        <form class="form-wrapper cf" role="form" action="<c:url value='/ScholarServlet?'/>" method="get" id="searchForm">
+    <div class="sky-container">
+        <div class="text-right sky-container__left">
+            <h2 class="portfolio">
+                ADVISOR-ADVISEE
+            </h2>
+            <h2 class="resurrection">
+                COWORKER
+                <a href="${pageContext.request.contextPath}/resource/test.zip">Download the data!</a>
 
-            <input  type="hidden" name="method" value="findByAdvisee" />
-            <input class="st"  type="text" name="advisee" placeholder=" scholar,paper,field,organization" />
-            <%--Pages:<input type="text" name="pc" value="1" /><br>--%>
-            <button type="submit" value="search" >search</button>
-
-        </form>
+            </h2>
+        </div>
+        <div class="text-left sky-container__right">
+            <!--h2 class="08">
+                03
+            </h2>
+            <h2 class="thirty-one">
+                31
+            </h2>
+            <h2 class="2016">
+                2017
+            </h2-->
+        </div>
+    </div>
+</div>
+<div class="container next">
+    <div class="row" style="background-color: #4b586e ">
+        <!-- effect-4 html -->
+        <div class="col-sm-4">
+            <div class="single-member effect-4">
+                <div class="member-info">
+                    <h3>Sophia</h3>
+                    <h5>ShowGilr</h5>
+                </div>
+                <div class="member-image">
+                    <img src="${pageContext.request.contextPath}/resource/paper.jpg" alt="Member">
+                </div>
+                <div class="more-info">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+                    <div >
+                        <a class="button" href="#">download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- effect-4 html end -->
+        <div class="col-sm-4">
+            <div class="single-member effect-4">
+                <div class="member-info">
+                    <h3>Sophia</h3>
+                    <h5>ShowGilr</h5>
+                </div>
+                <div class="member-image">
+                    <img src="${pageContext.request.contextPath}/resource/paper.jpg" alt="Member">
+                </div>
+                <div class="more-info">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+                    <div >
+                        <a class="button" href="#">download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="single-member effect-4">
+                <div class="member-info">
+                    <h3>Sophia</h3>
+                    <h5>ShowGilr</h5>
+                </div>
+                <div class="member-image">
+                    <img src="${pageContext.request.contextPath}/resource/paper.jpg" alt="Member">
+                </div>
+                <div class="more-info">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+                    <div >
+                        <a class="button" href="#">download</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="sky-container">
-    <div class="text-right sky-container__left">
-        <h2 class="portfolio">
-            ADVISOR-ADVISEE
-        </h2>
-        <h2 class="resurrection">
-            COWORKER
-            <a href="${pageContext.request.contextPath}/resource/test.zip">Download the data!</a>
 
-        </h2>
-    </div>
-    <div class="text-left sky-container__right">
-        <h2 class="08">
-            03
-        </h2>
-        <h2 class="thirty-one">
-            31
-        </h2>
-        <h2 class="2016">
-            2017
-        </h2>
-    </div>
-</div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
 

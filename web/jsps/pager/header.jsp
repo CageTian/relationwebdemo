@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/guide_serch.css">
 <script type="text/javascript">
     $(function() {/*Map<String(Cookie名称),Cookie(Cookie本身)>*/
         // 获取cookie中的用户名
@@ -15,6 +16,9 @@
         if("${sessionScope.sessionUser.username}") {
             username = "${sessionScope.sessionUser.username}";
             $("#showWord").text(username);
+            $("#Button2").text("");
+            $("#loginspan").text("");
+
         }
         $("#username").val(username);
 
@@ -30,7 +34,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/jsps/welcome.jsp">SCHOLAR</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/jsps/welcome.jsp">SHIFU</a>
             </div>
             <div id="searchlocation">
                 <form class="navbar-form navbar-left" role="form" action="<c:url value='/ScholarServlet?'/>" method="get" id="searchForm">
@@ -48,7 +52,7 @@
                         <a href="#" id="Button1" value="signup" onclick="window.open('${pageContext.request.contextPath}/jsps/user/regist.jsp')"><span class="glyphicon glyphicon-user" ></span> <t id="showWord">Sign up</t></a>
                     </li>
                     <li >
-                        <a href="#" data-toggle="modal" data-target="#mymodal-data" id="Button2" value="login" onclick="ShowDiv('MyDivLogin','fade')"><span class="glyphicon glyphicon-log-in" ></span> Log in</a>
+                        <a href="#" data-toggle="modal" data-target="#mymodal-data" id="Button2" value="login" onclick="ShowDiv('MyDivLogin','fade')"><span class="glyphicon glyphicon-log-in" id="loginspan" ></span> Log in</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/jsps/welcome.jsp"><span class="glyphicon glyphicon-home" ></span>Home</a>
