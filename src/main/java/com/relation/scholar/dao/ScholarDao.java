@@ -31,14 +31,14 @@ public class ScholarDao{
         /*
 		 * 3. 总记录数
 		 */
-        String sql = "select count(*) from mentorship" + whereSql;
+        String sql = "select count(*) from advisee_info" + whereSql;
         Number number = (Number)qr.query(sql, new ScalarHandler(), params.toArray());
         int totalRecord = number.intValue();//得到了总记录数
         System.out.println(totalRecord);
 		/*
 		 * 4. 得到beanList，即当前页记录
 		 */
-        sql = "select * from mentorship" + whereSql + " order by advisee limit ?,?";
+        sql = "select * from advisee_info" + whereSql + " order by advisee limit ?,?";
         params.add((pageCount - 1) * pageSize);//当前页首行记录的下标
         params.add(pageSize);//一共查询几行，就是每页记录数
 
@@ -74,7 +74,7 @@ public class ScholarDao{
         return findByCriteria(exprList, pc);
     }
     public Scholar  getScholarInfoByName(String bid) throws SQLException {
-        String sql="SELECT * FROM mentorship WHERE bid=?";
+        String sql="SELECT * FROM advisee_info WHERE advisee_id=?";
         return qr.query(sql,new BeanHandler<Scholar>(Scholar.class),bid);
     }
 
@@ -107,7 +107,7 @@ public class ScholarDao{
      * @return
      */
     public List<String> getMentorship(String advisor) {
-        String sql = "select * from mentorship where advisor= ? order by possibilities DESC";
+        String sql = "select * from advisee_info where advisor= ? order by possibility DESC";
         List<String>advisee_list=new ArrayList<String>();
         try {
             advisee_list= (List<String>) qr.query(sql, new ColumnListHandler(),advisor);
@@ -139,7 +139,7 @@ public class ScholarDao{
      * @return
      */
     public Map<String, Object> getPaperDetail(String advisee){
-        String sql="select paper_detail from advisee where advisee=? ";
+        String sql="select paper_detail from advisee_info where advisee=? ";
         try {
             return qr.query(sql,new MapHandler(),advisee);
 
@@ -155,7 +155,7 @@ public class ScholarDao{
      * @return
      */
     public Map<String, Object> getAdviseeCopDetail(String advisee){
-        String sql="select advisor_cop_detail from advisee where advisee=? ";
+        String sql="select advisor_cop_detail from advisee_info where advisee=? ";
         try {
             return qr.query(sql,new MapHandler(),advisee);
 
@@ -171,7 +171,7 @@ public class ScholarDao{
      * @return
      */
     public Map<String, Object> getColCopDetail(String advisee){
-        String sql="select col_cop_detail from advisee where advisee=? ";
+        String sql="select col_cop_detail from advisee_info where advisee=? ";
         try {
             return qr.query(sql,new MapHandler(),advisee);
 

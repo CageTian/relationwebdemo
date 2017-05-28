@@ -7,8 +7,6 @@ import com.relation.scholar.domain.Scholar;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.junit.Test;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.sql.SQLException;
 import java.util.*;
 
