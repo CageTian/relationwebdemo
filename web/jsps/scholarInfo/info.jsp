@@ -19,6 +19,8 @@
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/guide_serch.css">
+    <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+    <script src="https://a.alipayobjects.com/g/datavis/g2/2.3.0/g2.js"></script>
     <script type="text/javascript">
         $(function() {/*Map<String(Cookie名称),Cookie(Cookie本身)>*/
             // 获取cookie中的用户名
@@ -76,12 +78,14 @@ h4,h3{
 }
 
 .lanren {
-    width: 300px;height:100px;
+    width: 300px;
+    height:100px;
     overflow: hidden;
     margin: 0 auto;
 }
 .flip-3d {
     border-radius:50%;
+    perspective: 1200px;
     width: 33%;
     float: left;
 }
@@ -133,7 +137,7 @@ h4,h3{
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../welcome1.jsp">SCHOLAR</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/jsps/welcome.jsp">SHIFU</a>
             </div>
             <div id="searchlocation">
                 <form class="navbar-form navbar-left" role="form" action="<c:url value='/ScholarServlet?'/>" method="get" id="searchForm">
@@ -154,7 +158,7 @@ h4,h3{
                         <a href="#" data-toggle="modal" data-target="#mymodal-data" id="Button2" value="login" onclick="ShowDiv('MyDivLogin','fade')"><span class="glyphicon glyphicon-log-in" ></span> Log in</a>
                     </li>
                     <li>
-                        <a href="../user/welcome1.jsp"><span class="glyphicon glyphicon-home" ></span>Home</a>
+                        <a href="${pageContext.request.contextPath}/jsps/welcome.jsp"><span class="glyphicon glyphicon-home" ></span>Home</a>
                     </li>
                     <li>
                         <a href=<c:url value='/ScholarServlet?method=ScholarFeedback&advisee_id=${scholar.advisee_id}'/>><span class="glyphicon glyphicon-pencil" ></span>Modify</a>
@@ -228,8 +232,7 @@ h4,h3{
 
 <div class="container" style="margin-top:50px;">
     <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-5">
+        <div class="col-sm-5 col-sm-offset-1">
             <div class="row">
                 <div class="col-sm-4" style="margin-top: 7%">
                     <img src="${pageContext.request.contextPath}/resource/profile1.jpg" class="img-responsive">
@@ -240,7 +243,8 @@ h4,h3{
                         <a type="hidden" id="my_advisee_id">${requestScope.get("scholar").advisee_id}</a>
                     </div>
                     <div class="row"><h3>Institution:<h id="advisor">${requestScope.get("scholar").advisor}</h>;</h3></div>
-                    <div class="row lanren">
+                    <div class="row">
+                        <div class="lanren">
                         <div class="flip-3d">
                             <figure > <img src="${pageContext.request.contextPath}/resource/startyear.jpg">
                                 <figcaption id="test">year</figcaption>
@@ -257,77 +261,87 @@ h4,h3{
                                 <figcaption>coworkes</figcaption>
                             </figure>
                         </div>
+                        </div>
                     </div>
                 </div>
-
-
-
-                    <!--h5>advisor:<h id="advisor">${requestScope.get("scholar").advisor}</h>;</h5>
-                    <h5>conpany:</h5-->
             </div>
         </div>
         <div class="col-sm-5" id="paperNum">
-            <!--div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        Coworkers
-                    </h4>
-                </div>
-                <div class="panel-body tree" style="overflow: auto">
-                    <iframe src="/jsps/coworker_circle.jsp" width="400" height="150" frameborder="0"></iframe>
+
+        </div>
+    </div>
+    <!--<div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#Relationtree" data-toggle="tab">
+                    Academic Family Tree</a>
+                </li>
+                <li><a href="#advisor" data-toggle="tab">Collaboration Times with Advisor</a></li>
+                <li><a href="#collaborator" data-toggle="tab">Collaboration Network</a></li>
+
+            </ul>
+
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="Relationtree">
+                <div class="col-sm-10" id="tree">
+
                 </div>
 
-            </div-->
+            </div>
+            <div class="tab-pane fade" id="advisor">
+                <div class="col-sm-4">      </div>
+                <div class="col-sm-8" id="teac_time">
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="collaborator">
+                <div class="col-sm-6 web"></div>
+                <div class="col-sm-6" id="coworker"></div>
+            </div>
+            <!--div class="tab-pane fade" id="ejb">
+                <p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+                </p>
+            </div>
         </div>
-        <div class="col-sm-1"></div>
-    </div>
+        </div>
+        <script>
+            $('#myTab a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            })
+
+        </script>
+
+    </div>-->
 
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-5" id="student">
-            <hr><h4>student</h4><hr>
-            <!--div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        Advisor-advisee
-                    </h4>
-                </div>
-                <div class="panel-body tree" style="overflow: auto">
-                    <iframe src="/jsps/tree.jsp" width="1000" height="400" frameborder="0"></iframe>
-                </div>
+            <hr><h4>Collaboration Times with Descendant</h4><hr>
 
-            </div-->
         </div>
-        <div class="col-sm-5" >
+        <div class="col-sm-5" id="coworker">
             <hr><h4>coworker</h4><hr>
-            <div id="coworker" style="margin-left: 10%; overflow:visible"></div>
-            <!--div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        Coworker Net
-                    </h4>
-                </div>
-                <div class="panel-body web" style="overflow: auto">
 
-                </div>
-            </div-->
         </div>
         <div class="col-sm-1"></div>
     </div>
 
-    <!--div class="row">advisor-advisee tree</div-->
+
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10" id="tree">
-            <hr><h4>advisor-advisee tree</h4><hr>
+            <hr><h4>Academic Family Tree</h4><hr>
         </div>
         <div class="col-sm-1"></div>
     </div>
-    <!--div class="row">coworkers net</div-->
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-10 web" >
-            <hr><h4>coworkers net</h4><hr>
+        <div class="col-sm-5 web" >
+            <hr><h4>Collaboration Network</h4><hr>
+        </div>
+        <div class="col-sm-5" id="teac_time">
+            <hr><h4>Collaboration Times with Advisor</h4><hr>
         </div>
         <div class="col-sm-1"></div>
     </div>
@@ -341,18 +355,17 @@ h4,h3{
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-<script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/web.js" type="text/javascript"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<script src="https://a.alipayobjects.com/g/datavis/g2/2.3.0/g2.js"></script>
 
-<script src="yukuai.json"></script>
+
+<!--script src="yukuai.json"></script>
 <script src="jizuobiao.json"></script>
 <script src="paper.json"></script>
-<script src="tree.json"></script>
-
+<script src="tree.json"></script-->
 
 <script src=" ${pageContext.request.contextPath}/js/diagram.js" type="text/javascript"></script>
 <script src=" ${pageContext.request.contextPath}/js/login.js" type="text/javascript"></script>
