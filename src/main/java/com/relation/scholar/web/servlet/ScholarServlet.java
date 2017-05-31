@@ -86,20 +86,8 @@ public class ScholarServlet extends BaseServlet {
         JSONObject s=scholarService.getCollaboratorNet(1,request.getParameter("advisor"));
         response.getWriter().write(s.toString());
     }
-    public void getAjaxCircleJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getCollaboratorCir(request.getParameter("advisor")).toString());
-    }
     public void getAjaxTreeJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.getWriter().write(scholarService.getMentorTree(3,request.getParameter("advisee")).toString());
-    }
-    public void getAjaxPaperDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getPaperDetail(Integer.parseInt(request.getParameter("advisee_id"))).toString());
-    }
-    public void getAjaxAdvisorCopDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getAdvisorDetail(Integer.parseInt(request.getParameter("advisee_id"))).toString());
-    }
-    public void getAjaxColCopDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getColDetail(Integer.parseInt(request.getParameter("advisee_id"))).toString());
     }
     public void getAjaxDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.getWriter().write(scholarService.getDetail(Integer.parseInt(request.getParameter("advisee_id"))).toString());

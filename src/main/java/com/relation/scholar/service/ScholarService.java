@@ -111,95 +111,6 @@ public class ScholarService {
         return jsonObject;
 
     }
-    public JSONObject getCollaboratorCir(String advisor) {
-        List<sqlExpression>exprList=new ArrayList<sqlExpression>();
-        exprList.add(new sqlExpression("all_author","like","%"+advisor+"%"));
-        List<Map<String, Object>> mapList= null;
-        try {
-            mapList = scholarDao.getCollaborator(advisor);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        //Creat Link&nodes list
-        List<Map<String,Object>> link=new ArrayList<Map<String, Object>>();
-        List<Map<String,Object>> nodes=new ArrayList<Map<String, Object>>();
-
-        for(Map<String, Object> map:mapList){
-            String[] tmp=map.get("all_author").toString().split("#");
-            for(String name:tmp){
-                if(!advisor.equals(name))
-                {
-                    Map<String, Object>map1=new HashMap<String,Object>();
-                    map1.put("id",name);
-                    map1.put("group",2);
-                    if(!nodes.contains(map1)){
-                        nodes.add(map1);
-
-                        Map<String, Object>map3=new HashMap<String,Object>();
-                        map3.put("source",advisor);
-                        map3.put("target",name);
-                        map3.put("value",3);
-                        link.add(map3);
-
-                    }
-                }
-            }
-        }
-        Map<String, Object>map2=new HashMap<String,Object>();
-        map2.put("id",advisor);
-        map2.put("group",1);
-        nodes.add(map2);
-
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("nodes", JSONArray.fromObject(nodes));
-        jsonObject.put("links",JSONArray.fromObject(link));
-        return jsonObject;
-    }
-    public JSONArray getPaperDetail(int advisee_id){
-        JSONArray jsonArray=new JSONArray();
-        Map map=scholarDao.getPaperDetail(advisee_id);
-        String s=(String) map.get("paper_detail");
-        String[] year=s.split(",");
-        for(String y:year){
-            JSONObject jsonObject=new JSONObject();
-            jsonObject.put("year",y.substring(0,4));
-            jsonObject.put("number",Integer.parseInt(y.substring(5)));
-            jsonArray.add(jsonObject);
-        }
-        return jsonArray;//第一个jsonObeject是开始年份和总论文数
-    }
-    public JSONArray getAdvisorDetail(int advisee_id){
-        JSONArray jsonArray=new JSONArray();
-        Map map=scholarDao.getAdviseeCopDetail(advisee_id);
-        String s=(String) map.get("advisor_cop_detail");
-        String[] year=s.split(",");
-        for(String y:year){
-            JSONObject jsonObject=new JSONObject();
-            jsonObject.put("year",y.substring(0,4));
-            jsonObject.put("number",Integer.parseInt(y.substring(5)));
-            jsonArray.add(jsonObject);
-        }
-        return jsonArray;
-    }
-    public JSONArray getColDetail(int advisee_id){
-        JSONArray jsonArray=new JSONArray();
-        Map map=scholarDao.getColCopDetail(advisee_id);
-        String s=(String) map.get("col_cop_detail");
-        String[] year=s.split(",");
-        int count=0;
-        for(String y:year){
-            if(count<=20){
-                count++;
-                JSONObject jsonObject=new JSONObject();
-                jsonObject.put("coworker",y.substring(0,y.indexOf(":")));
-                jsonObject.put("times",Integer.parseInt(y.substring(y.indexOf(":")+1)));
-                jsonArray.add(jsonObject);
-            }
-            else break;
-        }
-        return jsonArray;
-    }
     public JSONArray getDetail(int advisee_id){
         JSONArray paperArray=new JSONArray();
         JSONArray advisorArray=new JSONArray();
@@ -280,15 +191,6 @@ public class ScholarService {
     @Test
     public void copNetTest() throws SQLException {
         getCollaboratorNet(2,"Sanjeev Saxena");
-    }
-    @Test
-    public void copCircleTest() throws SQLException {
-        String name="feng xia";
-        System.out.println(getCollaboratorCir(name));
-    }
-    @Test
-    public void paperTest(){
-        System.out.println(getColDetail(123));
     }
     @Test
     public void detailTest(){
