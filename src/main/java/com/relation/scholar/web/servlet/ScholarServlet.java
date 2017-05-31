@@ -101,5 +101,8 @@ public class ScholarServlet extends BaseServlet {
     public void getAjaxColCopDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.getWriter().write(scholarService.getColDetail(Integer.parseInt(request.getParameter("advisee_id"))).toString());
     }
+    public void getAjaxDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.getWriter().write(scholarService.getDetail(Integer.parseInt(request.getParameter("advisee_id"))).toString());
+    }
 }
 

@@ -6,6 +6,7 @@ var dataline=[];
 var datacoworker = [];
 //var datatree = [{"name":"flare","children":[{"name":"analytics","children":[{"name":"cluster","children":[{"name":"AgglomerativeCluster","size":3938},{"name":"CommunityStructure","size":3812},{"name":"HierarchicalCluster","size":6714},{"name":"MergeEdge","size":743}]},{"name":"graph","children":[{"name":"BetweennessCentrality","size":3534},{"name":"LinkDistance","size":5731},{"name":"MaxFlowMinCut","size":7840},{"name":"ShortestPaths","size":5914},{"name":"SpanningTree","size":3416}]},{"name":"optimization","children":[{"name":"AspectRatioBanker","size":7074}]}]},{"name":"animate","children":[{"name":"Easing","size":17010},{"name":"FunctionSequence","size":5842},{"name":"interpolate","children":[{"name":"ArrayInterpolator","size":1983},{"name":"ColorInterpolator","size":2047},{"name":"DateInterpolator","size":1375},{"name":"Interpolator","size":8746},{"name":"MatrixInterpolator","size":2202},{"name":"NumberInterpolator","size":1382},{"name":"ObjectInterpolator","size":1629},{"name":"PointInterpolator","size":1675},{"name":"RectangleInterpolator","size":2042}]},{"name":"ISchedulable","size":1041},{"name":"Parallel","size":5176},{"name":"Pause","size":449},{"name":"Scheduler","size":5593},{"name":"Sequence","size":5534},{"name":"Transition","size":9201},{"name":"Transitioner","size":19975},{"name":"TransitionEvent","size":1116},{"name":"Tween","size":6006}]}]}];
 var datatree = [];
+var data_teacher = [];
 var advisee1=$("#my_advisee_id").text();
 var advisee2=$("#advisee1").text();
 $(function() {
@@ -58,7 +59,22 @@ $(function() {
         }
     });
 
-
+    $.ajax({
+        url:"/relationwebdemo/ScholarServlet",//要请求的servlet
+        data:{method:"getAjaxAdvisorCopDetail", advisee_id:parseInt(advisee1)},//给服务器的参数
+        type:"GET",
+        dataType:"json",
+        async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
+        cache:false,
+        success:function(result) {
+            if(result) {//如果校验失败
+                for(var i=0;i<result.length;i++){
+                    data_teacher[i]={year:result[i].year,number:result[i].number};
+                }
+                return true;
+            }
+        }
+    });
     var chart = new G2.Chart({
         id: 'paperNum',
         forceFit: true,
@@ -310,74 +326,61 @@ $(function() {
         .tooltip('name');
     chart.render();
 
+    var Stat = G2.Stat;
+    var chart = new G2.Chart({
+        id : 'teac_time',
+        forceFit: true,
+        height: 450
+    });
+    var Frame = G2.Frame;
+    var frame = new Frame(data_teacher);
+    frame = Frame.sort(frame, 'release');
+    chart.source(frame, {
+        year: {
+            alias: 'year',
+            range: [0, 1],
+            fill: '#cecece', // 文本的颜色
+            fontSize: '12', // 文本大小
+            fontWeight: 'normal' // 文本粗细
+        },
+        number: {
+            alias: 'times',
+            fill: '#cecece', // 文本的颜色
+            fontSize: '12', // 文本大小
+            fontWeight: 'normal' // 文本粗细
+
+        }
+    });
+    chart.axis('year', {
+        labels: {
+            //autoRotate: true | false, // 文本是否允许自动旋转
+            label: {
+                textAlign: 'center', // 文本对齐方向，可取值为： left center right
+                fill: '#cecece', // 文本的颜色
+                fontSize: '12', // 文本大小
+                fontWeight: 'normal' // 文本粗细
+                //rotate: 30 // 文本旋转角度
+            }
+        }
+    });
+    chart.axis('number', {
+        labels: {
+            //autoRotate: true | false, // 文本是否允许自动旋转
+            label: {
+                textAlign: 'center', // 文本对齐方向，可取值为： left center right
+                fill: '#cecece', // 文本的颜色
+                fontSize: '12', // 文本大小
+                fontWeight: 'normal'// 文本粗细
+                //rotate: 30 // 文本旋转角度
+            }
+        }
+    });
+    chart.interval().position('year*number').color('#de00da');
+    chart.render();
 });
 
 
 //coworker_times
 
 //柱 学者和老师的合作情况
-var data_teacher = [
-    {year: '1996', number: 0},
-    {year: '1997', number: 2},
-    {year: '1998', number: 1},
-    {year: '1999', number: 0},
-    {year: '2000', number: 5},
-    {year: '2001', number: 10},
-    {year: '2002', number: 0},
-    {year: '2006', number: 2},
-    {year: '2007', number: 23},
-    {year: '2009', number: 18},
-    {year: '2015', number: 1},
-    {year: '2016', number: 9}
-];
-var Stat = G2.Stat;
-var chart = new G2.Chart({
-    id : 'teac_time',
-    forceFit: true,
-    height: 450
-});
-var Frame = G2.Frame;
-var frame = new Frame(data_teacher);
-frame = Frame.sort(frame, 'release');
-chart.source(frame, {
-    year: {
-        alias: 'year',
-        range: [0, 1],
-        fill: '#cecece', // 文本的颜色
-        fontSize: '12', // 文本大小
-        fontWeight: 'normal' // 文本粗细
-    },
-    number: {
-        alias: 'times',
-        fill: '#cecece', // 文本的颜色
-        fontSize: '12', // 文本大小
-        fontWeight: 'normal' // 文本粗细
 
-    }
-});
-chart.axis('year', {
-    labels: {
-        //autoRotate: true | false, // 文本是否允许自动旋转
-        label: {
-            textAlign: 'center', // 文本对齐方向，可取值为： left center right
-            fill: '#cecece', // 文本的颜色
-            fontSize: '12', // 文本大小
-            fontWeight: 'normal' // 文本粗细
-            //rotate: 30 // 文本旋转角度
-        }
-    }
-});
-chart.axis('number', {
-    labels: {
-        //autoRotate: true | false, // 文本是否允许自动旋转
-        label: {
-            textAlign: 'center', // 文本对齐方向，可取值为： left center right
-            fill: '#cecece', // 文本的颜色
-            fontSize: '12', // 文本大小
-            fontWeight: 'normal'// 文本粗细
-            //rotate: 30 // 文本旋转角度
-        }
-    }
-});
-chart.interval().position('year*number').color('#de00da');
-chart.render();

@@ -200,6 +200,54 @@ public class ScholarService {
         }
         return jsonArray;
     }
+    public JSONArray getDetail(int advisee_id){
+        JSONArray paperArray=new JSONArray();
+        JSONArray advisorArray=new JSONArray();
+        JSONArray colArray=new JSONArray();
+        JSONArray detailArray=new JSONArray();
+
+        Map map=scholarDao.getDetail(advisee_id);
+
+        String paper=(String) map.get("paper_detail");
+        String advisor=(String) map.get("advisor_cop_detail");
+        String col=(String) map.get("col_cop_detail");
+        String[] paper_year=paper.split(",");
+        String[] advisee_year=advisor.split(",");
+        String[] col_year=col.split(",");
+
+        for(String y:paper_year){
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("year",y.substring(0,4));
+            jsonObject.put("number",Integer.parseInt(y.substring(5)));
+            paperArray.add(jsonObject);
+        }
+
+        for(String y:advisee_year){
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("year",y.substring(0,4));
+            jsonObject.put("number",Integer.parseInt(y.substring(5)));
+            advisorArray.add(jsonObject);
+        }
+
+        int count=0;
+        for(String y:col_year){
+            if(count<=20){
+                count++;
+                JSONObject jsonObject=new JSONObject();
+                jsonObject.put("coworker",y.substring(0,y.indexOf(":")));
+                jsonObject.put("times",Integer.parseInt(y.substring(y.indexOf(":")+1)));
+                colArray.add(jsonObject);
+            }
+            else break;
+        }
+
+
+        detailArray.add(paperArray);
+        detailArray.add(advisorArray);
+        detailArray.add(colArray);
+
+        return detailArray;//第一个jsonObeject是开始年份和总论文数
+    }
 
     /**
      * 获得学者合作圈
@@ -241,5 +289,9 @@ public class ScholarService {
     @Test
     public void paperTest(){
         System.out.println(getColDetail(123));
+    }
+    @Test
+    public void detailTest(){
+        System.out.println(getDetail(762695));
     }
 }

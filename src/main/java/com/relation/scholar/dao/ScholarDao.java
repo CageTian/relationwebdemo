@@ -4,6 +4,7 @@ import com.relation.pager.PageBean;
 import com.relation.pager.sqlExpression;
 import com.relation.scholar.domain.Scholar;
 import com.relation.utils.JDBC.TxQueryRunner;
+import javafx.beans.binding.ObjectExpression;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.*;
 
@@ -172,6 +173,16 @@ public class ScholarDao{
      */
     public Map<String, Object> getColCopDetail(int advisee_id){
         String sql="select col_cop_detail from advisee_info where advisee_id=? ";
+        try {
+            return qr.query(sql,new MapHandler(),advisee_id);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Map<String,Object>getDetail(int advisee_id){
+        String sql="select paper_detail,advisor_cop_detail,col_cop_detail from advisee_info where advisee_id=? ";
         try {
             return qr.query(sql,new MapHandler(),advisee_id);
 
