@@ -22,9 +22,9 @@ public class ScholarService {
             throw new RuntimeException();
         }
     }
-    public Scholar getScholarInfo(String bid){
+    public Scholar getScholarInfo(int advisee_id){
         try {
-            return scholarDao.getScholarInfoByName(bid);
+            return scholarDao.getScholarInfoByName(advisee_id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -156,9 +156,9 @@ public class ScholarService {
         jsonObject.put("links",JSONArray.fromObject(link));
         return jsonObject;
     }
-    public JSONArray getPaperDetail(String advisee){
+    public JSONArray getPaperDetail(int advisee_id){
         JSONArray jsonArray=new JSONArray();
-        Map map=scholarDao.getPaperDetail(advisee);
+        Map map=scholarDao.getPaperDetail(advisee_id);
         String s=(String) map.get("paper_detail");
         String[] year=s.split(",");
         for(String y:year){
@@ -167,12 +167,11 @@ public class ScholarService {
             jsonObject.put("number",Integer.parseInt(y.substring(5)));
             jsonArray.add(jsonObject);
         }
-        jsonArray.remove(0);
         return jsonArray;//第一个jsonObeject是开始年份和总论文数
     }
-    public JSONArray getAdvisorDetail(String advisee){
+    public JSONArray getAdvisorDetail(int advisee_id){
         JSONArray jsonArray=new JSONArray();
-        Map map=scholarDao.getAdviseeCopDetail(advisee);
+        Map map=scholarDao.getAdviseeCopDetail(advisee_id);
         String s=(String) map.get("advisor_cop_detail");
         String[] year=s.split(",");
         for(String y:year){
@@ -183,9 +182,9 @@ public class ScholarService {
         }
         return jsonArray;
     }
-    public JSONArray getColDetail(String advisee){
+    public JSONArray getColDetail(int advisee_id){
         JSONArray jsonArray=new JSONArray();
-        Map map=scholarDao.getColCopDetail(advisee);
+        Map map=scholarDao.getColCopDetail(advisee_id);
         String s=(String) map.get("col_cop_detail");
         String[] year=s.split(",");
         int count=0;
@@ -228,7 +227,7 @@ public class ScholarService {
     }
     @Test
     public void MentorTreeTest(){
-        System.out.println(getMentorTree(3,"Sanjeev Saxena"));
+        System.out.println(getMentorTree(3,"feng xia"));
     }
     @Test
     public void copNetTest() throws SQLException {
@@ -241,6 +240,6 @@ public class ScholarService {
     }
     @Test
     public void paperTest(){
-        System.out.println(getColDetail("feng xia"));
+        System.out.println(getColDetail(123));
     }
 }
