@@ -12,33 +12,23 @@ var advisee2=$("#advisee1").text();
 $(function() {
     $.ajax({
         url:"/relationwebdemo/ScholarServlet",//要请求的servlet
-        data:{method:"getAjaxPaperDetail", advisee_id:parseInt(advisee1)},//给服务器的参数
+        data:{method:"getAjaxDetail", advisee_id:parseInt(advisee1)},//给服务器的参数
         type:"GET",
         dataType:"json",
         async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
         cache:false,
         success:function(result) {
             if(result) {//如果校验失败
-                for(var i=0;i<result.length;i++){
-                    dataline[i]={year:result[i].year,number:result[i].number};
+                for(var i=0;i<result[0].length;i++){
+                    dataline[i]={year:result[0][i].year,number:result[0][i].number};
                 }
-                return true;
-            }
-        }
-    });
+                for(var i=0;i<result[1].length;i++){
+                    data_teacher[i]={year:result[1][i].year,number:result[1][i].number};
+                }
+                for(var i=0;i<result[2].length;i++){
+                    datacoworker[i]={coworker:result[2][i].coworker,times:result[2][i].times};
+                }
 
-    $.ajax({
-        url:"/relationwebdemo/ScholarServlet",//要请求的servlet
-        data:{method:"getAjaxColCopDetail", advisee_id:parseInt(advisee1)},//给服务器的参数
-        type:"GET",
-        dataType:"json",
-        async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
-        cache:false,
-        success:function(result) {
-            if(result) {//如果校验失败
-                for(var i=0;i<result.length;i++){
-                    datacoworker[i]={coworker:result[i].coworker,times:result[i].times};
-                }
                 return true;
             }
         }
@@ -59,22 +49,6 @@ $(function() {
         }
     });
 
-    $.ajax({
-        url:"/relationwebdemo/ScholarServlet",//要请求的servlet
-        data:{method:"getAjaxAdvisorCopDetail", advisee_id:parseInt(advisee1)},//给服务器的参数
-        type:"GET",
-        dataType:"json",
-        async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
-        cache:false,
-        success:function(result) {
-            if(result) {//如果校验失败
-                for(var i=0;i<result.length;i++){
-                    data_teacher[i]={year:result[i].year,number:result[i].number};
-                }
-                return true;
-            }
-        }
-    });
     var chart = new G2.Chart({
         id: 'paperNum',
         forceFit: true,
