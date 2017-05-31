@@ -161,7 +161,7 @@ h4,h3{
                         <a href="${pageContext.request.contextPath}/jsps/welcome.jsp"><span class="glyphicon glyphicon-home" ></span>Home</a>
                     </li>
                     <li>
-                        <a href=<c:url value='/ScholarServlet?method=ScholarFeedback&bid=${scholar.bid}'/>><span class="glyphicon glyphicon-pencil" ></span>Modify</a>
+                        <a href=<c:url value='/ScholarServlet?method=ScholarFeedback&advisee_id=${scholar.advisee_id}'/>><span class="glyphicon glyphicon-pencil" ></span>Modify</a>
                     </li>
                 </ul>
             </div>
@@ -240,6 +240,7 @@ h4,h3{
                 <div class="col-sm-8">
                     <div class="row">
                         <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h>;</h3>
+                        <a type="hidden" id="my_advisee_id">${requestScope.get("scholar").advisee_id}</a>
                     </div>
                     <div class="row"><h3>Institution:<h id="advisor">${requestScope.get("scholar").advisor}</h>;</h3></div>
                     <div class="row">
