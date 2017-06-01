@@ -1,5 +1,4 @@
 package com.relation.scholar.service;
-
 import com.relation.pager.PageBean;
 import com.relation.pager.sqlExpression;
 import com.relation.scholar.dao.ScholarDao;
@@ -112,12 +111,12 @@ public class ScholarService {
 
     }
     public JSONArray getDetail(int advisee_id){
+        Map map=scholarDao.getDetail(advisee_id);
+
         JSONArray paperArray=new JSONArray();
         JSONArray advisorArray=new JSONArray();
         JSONArray colArray=new JSONArray();
         JSONArray detailArray=new JSONArray();
-
-        Map map=scholarDao.getDetail(advisee_id);
 
         String paper=(String) map.get("paper_detail");
         String advisor=(String) map.get("advisor_cop_detail");
@@ -160,29 +159,33 @@ public class ScholarService {
         return detailArray;//第一个jsonObeject是开始年份和总论文数
     }
 
-    /**
-     * 获得学者合作圈
-     * 未完成：合作次数
-     * @param cop_name
-     * @return
-     * @throws SQLException
-     */
-    public JSONObject getCollaboratorCircle(String cop_name) throws SQLException {
-        List<sqlExpression>exprList=new ArrayList<sqlExpression>();
-        exprList.add(new sqlExpression("all_author","like","%"+cop_name+"%"));
-        List<Map<String, Object>> mapList=scholarDao.getCollaborator(cop_name);
-
-        Map<String,String> cop=new HashMap<String, String>();
-        for(Map<String, Object> map:mapList){
-            String[] tmp=map.get("all_author").toString().split("#");
-            for(String name:tmp){
-                if(!cop_name.equals(name))
-                {
-                    cop.put(name,map.get("year").toString().substring(0,4));
-                }
-            }
+    public JSONObject getTree(String advisor,int advisee_id){
+        JSONObject jsonObject=new JSONObject();
+        Object o=scholarDao.getTree(advisee_id).get("advisee_tree");
+        if(o==null){
+            jsonObject=getMentorTree(3,advisor);
+            scholarDao.setTree(jsonObject,advisee_id);
+            return jsonObject;
         }
-        return JSONObject.fromObject(cop);
+        else {
+            return JSONObject.fromObject(o);
+        }
+    }
+    public JSONObject getNet(String advisor,int advisee_id){
+        JSONObject jsonObject=new JSONObject();
+        Object o=scholarDao.getNet(advisee_id).get("col_net");
+        if(o==null){
+            jsonObject=getCollaboratorNet(1,advisor);
+            scholarDao.setNet(jsonObject,advisee_id);
+            return jsonObject;
+        }
+        else {
+            return JSONObject.fromObject(o);
+        }
+    }
+    @Test
+    public void getNetTest(){
+        System.out.println(getTree("feng xia",762695));
     }
     @Test
     public void MentorTreeTest(){

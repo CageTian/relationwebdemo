@@ -4,6 +4,7 @@ import com.relation.pager.PageBean;
 import com.relation.pager.sqlExpression;
 import com.relation.scholar.domain.Scholar;
 import com.relation.utils.JDBC.TxQueryRunner;
+import net.sf.json.JSONObject;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.*;
 
@@ -137,5 +138,49 @@ public class ScholarDao{
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Map<String,Object>getTree(int advisee_id){
+        String sql="select advisee_tree from advisee_info where advisee_id=? ";
+        try {
+            return qr.query(sql,new MapHandler(),advisee_id);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Map<String,Object>getNet(int advisee_id){
+        String sql="select col_net from advisee_info where advisee_id=? ";
+        try {
+            return qr.query(sql,new MapHandler(),advisee_id);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int setTree(JSONObject jsonObject,int advisee_id){
+        try {
+            String sql="update advisee_info set advisee_tree=? where advisee_id=?";
+            Object[] params={jsonObject.toString(),advisee_id};
+            return qr.update(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public int setNet(JSONObject jsonObject,int advisee_id){
+        try {
+            String sql="update advisee_info set col_net=? where advisee_id=?";
+            Object[] params={jsonObject.toString(),advisee_id};
+            return qr.update(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

@@ -270,49 +270,6 @@ h4,h3{
 
         </div>
     </div>
-    <!--<div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <ul id="myTab" class="nav nav-tabs">
-                <li class="active"><a href="#Relationtree" data-toggle="tab">
-                    Academic Family Tree</a>
-                </li>
-                <li><a href="#advisor" data-toggle="tab">Collaboration Times with Advisor</a></li>
-                <li><a href="#collaborator" data-toggle="tab">Collaboration Network</a></li>
-
-            </ul>
-
-        <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade in active" id="Relationtree">
-                <div class="col-sm-10" id="tree">
-
-                </div>
-
-            </div>
-            <div class="tab-pane fade" id="advisor">
-                <div class="col-sm-4">      </div>
-                <div class="col-sm-8" id="teac_time">
-
-                </div>
-            </div>
-            <div class="tab-pane fade" id="collaborator">
-                <div class="col-sm-6 web"></div>
-                <div class="col-sm-6" id="coworker"></div>
-            </div>
-            <!--div class="tab-pane fade" id="ejb">
-                <p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
-                </p>
-            </div>
-        </div>
-        </div>
-        <script>
-            $('#myTab a').click(function (e) {
-                e.preventDefault();
-                $(this).tab('show');
-            })
-
-        </script>
-
-    </div>-->
 
     <div class="row">
         <div class="col-sm-1"></div>
@@ -357,7 +314,7 @@ h4,h3{
 <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/common/web.js" type="text/javascript"></script>
+<%--<script src="${pageContext.request.contextPath}/js/common/web.js" type="text/javascript"></script>--%>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 

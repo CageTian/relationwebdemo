@@ -9,25 +9,186 @@ var datatree = [];
 var data_teacher = [];
 var advisee1=$("#my_advisee_id").text();
 var advisee2=$("#advisee1").text();
+
 $(function() {
     $.ajax({
         url:"/relationwebdemo/ScholarServlet",//要请求的servlet
         data:{method:"getAjaxDetail", advisee_id:parseInt(advisee1)},//给服务器的参数
         type:"GET",
         dataType:"json",
-        async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
+        async:true,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
         cache:false,
         success:function(result) {
             if(result) {//如果校验失败
+                //paper--------------------------------------------------------------------------
+
                 for(var i=0;i<result[0].length;i++){
                     dataline[i]={year:result[0][i].year,number:result[0][i].number};
                 }
-                for(var i=0;i<result[1].length;i++){
-                    data_teacher[i]={year:result[1][i].year,number:result[1][i].number};
-                }
+                var chart = new G2.Chart({
+                    id: 'paperNum',
+                    forceFit: true,
+                    height: 250
+                });
+                chart.source(dataline,{
+                    year: {
+                        alias: 'YEAR',
+                        range: [0, 1],
+                        fill: '#cecece', // 文本的颜色
+                        fontSize: '12', // 文本大小
+                        fontWeight: 'normal', // 文本粗细
+                    },
+                    number: {
+                        alias: 'PAPER NUMBER',
+                        fill: '#cecece', // 文本的颜色
+                        fontSize: '12', // 文本大小
+                        fontWeight: 'normal', // 文本粗细
+                    }
+                });
+                chart.axis('year', {
+                    labels: {
+                        //autoRotate: true | false, // 文本是否允许自动旋转
+                        label: {
+                            textAlign: 'center', // 文本对齐方向，可取值为： left center right
+                            fill: '#cecece', // 文本的颜色
+                            fontSize: '12', // 文本大小
+                            fontWeight: 'normal', // 文本粗细
+                            //rotate: 30 // 文本旋转角度
+                        }
+                    }
+                });
+                chart.axis('number', {
+                    labels: {
+                        //autoRotate: true | false, // 文本是否允许自动旋转
+                        label: {
+                            textAlign: 'center', // 文本对齐方向，可取值为： left center right
+                            fill: '#cecece', // 文本的颜色
+                            fontSize: '12', // 文本大小
+                            fontWeight: 'normal', // 文本粗细
+                            //rotate: 30 // 文本旋转角度
+                        }
+                    }
+                });
+                chart.tooltip(true, {
+                    custom: true, // 使用自定义的 tooltip
+                    offset: 10,
+                    customFollow: true
+                });
+                chart.line().position('year*number').color('#4bffd5').size(2);
+                chart.render();
+                //paper--------------------------------------------------------------------------
+
+                //col_cop--------------------------------------------------------------------------
                 for(var i=0;i<result[2].length;i++){
                     datacoworker[i]={coworker:result[2][i].coworker,times:result[2][i].times};
                 }
+                var chart = new G2.Chart({
+                    id: 'coworker',
+                    forceFit: true,
+                    height: 450,
+                    plotCfg: {
+                        margin: [35, 140, 35, 0]
+                    }
+                });
+                chart.source(datacoworker, {
+                    'times': {
+                        min: 0
+                    }
+                });
+                chart.coord('polar');
+                chart.axis('times', {
+                    labels: null
+                });
+                chart.axis('coworker', {
+                    gridAlign: 'middle',
+                    labelOffset: 10,
+                    labels: {
+                        label: {
+                            textAlign: 'center',// 设置坐标轴 label 的文本对齐方向
+                            fill: '#cecece', // 文本的颜色
+                            fontSize: '12', // 文本大小
+                            fontWeight: 'normal', // 文本粗细
+                        }
+                    }
+                });
+                chart.legend(false);
+                /*chart.legend('coworker', {
+                 itemWrap: true // 图例换行，将该参数设置为 true, 默认为 false，不换行。
+
+                 });*/
+                chart.tooltip(true, {
+                    custom: true, // 使用自定义的 tooltip
+                    offset: 10
+                });
+                chart.interval().position('coworker*times')
+                    .color('coworker','rgb(252,143,72)-rgb(255,215,135)')
+                    .label('times',{offset: -15,label: {textAlign: 'center', fontWeight: 'bold'}})
+                    .style({
+                        lineWidth: 1,
+                        stroke: '#fff'
+                    });
+                chart.render();
+                //col_cop--------------------------------------------------------------------------
+
+
+                //teacher_cop--------------------------------------------------------------------------
+                for(var i=0;i<result[1].length;i++){
+                    data_teacher[i]={year:result[1][i].year,number:result[1][i].number};
+                }
+
+                var Stat = G2.Stat;
+                var chart = new G2.Chart({
+                    id : 'teac_time',
+                    forceFit: true,
+                    height: 450
+                });
+                var Frame = G2.Frame;
+                var frame = new Frame(data_teacher);
+                frame = Frame.sort(frame, 'release');
+                chart.source(frame, {
+                    year: {
+                        alias: 'year',
+                        range: [0, 1],
+                        fill: '#cecece', // 文本的颜色
+                        fontSize: '12', // 文本大小
+                        fontWeight: 'normal' // 文本粗细
+                    },
+                    number: {
+                        alias: 'times',
+                        fill: '#cecece', // 文本的颜色
+                        fontSize: '12', // 文本大小
+                        fontWeight: 'normal' // 文本粗细
+
+                    }
+                });
+                chart.axis('year', {
+                    labels: {
+                        //autoRotate: true | false, // 文本是否允许自动旋转
+                        label: {
+                            textAlign: 'center', // 文本对齐方向，可取值为： left center right
+                            fill: '#cecece', // 文本的颜色
+                            fontSize: '12', // 文本大小
+                            fontWeight: 'normal' // 文本粗细
+                            //rotate: 30 // 文本旋转角度
+                        }
+                    }
+                });
+                chart.axis('number', {
+                    labels: {
+                        //autoRotate: true | false, // 文本是否允许自动旋转
+                        label: {
+                            textAlign: 'center', // 文本对齐方向，可取值为： left center right
+                            fill: '#cecece', // 文本的颜色
+                            fontSize: '12', // 文本大小
+                            fontWeight: 'normal'// 文本粗细
+                            //rotate: 30 // 文本旋转角度
+                        }
+                    }
+                });
+                chart.interval().position('year*number').color('#de00da');
+                chart.render();
+                //teacher_cop--------------------------------------------------------------------------
+
 
                 return true;
             }
@@ -36,120 +197,83 @@ $(function() {
 
     $.ajax({
         url:"/relationwebdemo/ScholarServlet",//要请求的servlet
-        data:{method:"getAjaxTreeJson", advisee:advisee2},//给服务器的参数
+        data:{method:"getAjaxTreeJson", advisee:advisee2,advisee_id:parseInt(advisee1)},//给服务器的参数
         type:"GET",
         dataType:"json",
-        async:false,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
+        async:true,//是否异步请求，如果是异步，那么不会等服务器返回，我们这个函数就向下运行了。
         cache:false,
         success:function(result) {
             if(result) {//如果校验
                 datatree[0]=result;
+                //teacher-student tree
+
+                var Layout = G2.Layout;
+                var Stat = G2.Stat;
+                var chart = new G2.Chart({
+                    id: 'tree',
+                    forceFit: true,
+                    height: 450,
+                    plotCfg: {
+                        margin: [20,50]
+                    }
+                });
+
+// 不显示title
+                chart.tooltip(true,{
+                    custom: true,
+                    offset:10,
+                    title: null
+                });
+
+// 不显示图例
+                chart.legend(false);
+// 使用layout，用户可以自己编写自己的layout
+// 仅约定输出的节点 存在 id,x，y字段即可
+                var layout = new Layout.Tree({
+                    nodes: datatree
+                });
+                var nodes = layout.getNodes();
+                var edges = layout.getEdges();
+
+// 首先绘制 edges，点要在边的上面
+// 创建单独的视图
+                var edgeView = chart.createView();
+                edgeView.source(edges);
+                edgeView.coord().transpose(); //
+                edgeView.axis(false);
+                edgeView.tooltip(false);
+// Stat.link 方法会生成 ..x, ..y的字段类型，数值范围是 0-1
+                edgeView.edge()
+                    .position(Stat.link('source*target',nodes))
+                    .shape('smooth')
+                    .color('#a8a8a8');
+
+// 创建节点视图
+                var nodeView = chart.createView();
+                nodeView.coord().transpose(); //'polar'
+                nodeView.axis(false);
+
+// 节点的x,y范围是 0，1
+// 因为边的范围也是 0,1所以正好统一起来
+                nodeView.source(nodes, {
+                    x: {min: 0,max:1},
+                    y: {min: 0, max:1},
+                    value: {min: 0}
+                });
+
+                nodeView.point().position('x*y').color('blue').size(3).label('name', {
+                    offset: 5,
+                    labelEmit: true,
+                    fill: '#fff', // 文本的颜色
+                    fontSize: '12', // 文本大小
+                    fontWeight: 'bold', // 文本粗细
+                })
+                    .tooltip('name');
+                chart.render();
                 return true;
             }
         }
     });
-
-    var chart = new G2.Chart({
-        id: 'paperNum',
-        forceFit: true,
-        height: 250
-    });
-    chart.source(dataline,{
-        year: {
-            alias: 'YEAR',
-            range: [0, 1],
-            fill: '#cecece', // 文本的颜色
-            fontSize: '12', // 文本大小
-            fontWeight: 'normal', // 文本粗细
-        },
-        number: {
-            alias: 'PAPER NUMBER',
-            fill: '#cecece', // 文本的颜色
-            fontSize: '12', // 文本大小
-            fontWeight: 'normal', // 文本粗细
-        }
-    });
-    chart.axis('year', {
-        labels: {
-            //autoRotate: true | false, // 文本是否允许自动旋转
-            label: {
-                textAlign: 'center', // 文本对齐方向，可取值为： left center right
-                fill: '#cecece', // 文本的颜色
-                fontSize: '12', // 文本大小
-                fontWeight: 'normal', // 文本粗细
-                //rotate: 30 // 文本旋转角度
-            }
-        }
-    });
-    chart.axis('number', {
-        labels: {
-            //autoRotate: true | false, // 文本是否允许自动旋转
-            label: {
-                textAlign: 'center', // 文本对齐方向，可取值为： left center right
-                fill: '#cecece', // 文本的颜色
-                fontSize: '12', // 文本大小
-                fontWeight: 'normal', // 文本粗细
-                //rotate: 30 // 文本旋转角度
-            }
-        }
-    });
-    chart.tooltip(true, {
-        custom: true, // 使用自定义的 tooltip
-        offset: 10,
-        customFollow: true
-    });
-    chart.line().position('year*number').color('#4bffd5').size(2);
-    chart.render();
-
-
-
-    var chart = new G2.Chart({
-        id: 'coworker',
-        forceFit: true,
-        height: 450,
-        plotCfg: {
-            margin: [35, 140, 35, 0]
-        }
-    });
-
-    chart.source(datacoworker, {
-        'times': {
-            min: 0
-        }
-    });
-    chart.coord('polar');
-    chart.axis('times', {
-        labels: null
-    });
-    chart.axis('coworker', {
-        gridAlign: 'middle',
-        labelOffset: 10,
-        labels: {
-            label: {
-                textAlign: 'center',// 设置坐标轴 label 的文本对齐方向
-                fill: '#cecece', // 文本的颜色
-                fontSize: '12', // 文本大小
-                fontWeight: 'normal', // 文本粗细
-            }
-        }
-    });
-    chart.legend(false);
-    /*chart.legend('coworker', {
-     itemWrap: true // 图例换行，将该参数设置为 true, 默认为 false，不换行。
-
-     });*/
-    chart.tooltip(true, {
-        custom: true, // 使用自定义的 tooltip
-        offset: 10
-    });
-    chart.interval().position('coworker*times')
-        .color('coworker','rgb(252,143,72)-rgb(255,215,135)')
-        .label('times',{offset: -15,label: {textAlign: 'center', fontWeight: 'bold'}})
-        .style({
-            lineWidth: 1,
-            stroke: '#fff'
-        });
-    chart.render();
 
 //srudent_times
     var datastu = [
@@ -174,7 +298,6 @@ $(function() {
         //data[i].percent=(data[i].number/max).toFixed(1);
         datastu[i].percent=datastu[i].number/max;
     }
-
     var Frame = G2.Frame;
     var frame = new Frame(datastu); // 加工数据
     frame.addCol('odd',function(obj,index){
@@ -219,141 +342,82 @@ $(function() {
 
 //year-paperNumber
 
-// var dataline = [
-//     {year: '1996', number: 0},
-//     {year: '1997', number: 2},
-//     {year: '1998', number: 1},
-//     {year: '1999', number: 0},
-//     {year: '2000', number: 5},
-//     {year: '2001', number: 10},
-//     {year: '2002', number: 0},
-//     {year: '2006', number: 2},
-//     {year: '2007', number: 23},
-//     {year: '2009', number: 18},
-//     {year: '2015', number: 1},
-//     {year: '2016', number: 9}
-// ];
+});
+//net graph-----------------------------------------------
+var width = 400;
+var height = 400;
+var svg = d3.select(".web")
+    .append("svg")
+    .attr("width",width)
+    .attr("height",height);
+var color = d3.scaleOrdinal(d3.schemeCategory20);
 
-//teacher-student tree
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
 
-    var Layout = G2.Layout;
-    var Stat = G2.Stat;
-    var chart = new G2.Chart({
-        id: 'tree',
-        forceFit: true,
-        height: 450,
-        plotCfg: {
-            margin: [20,50]
-        }
-    });
+d3.json("/relationwebdemo/ScholarServlet?method=getAjaxNetJson&advisee="+advisee2+"&advisee_id="+parseInt(advisee1), function(error, graph) {
+    if (error) throw error;
+    var link = svg.append("g")
+        .attr("class", "links")
+        .selectAll("line")
+        .data(graph.links)
+        .enter().append("line")
+        .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
 
-// 不显示title
-    chart.tooltip(true,{
-        custom: true,
-        offset:10,
-        title: null
-    });
+    var node = svg.append("g")
+        .attr("class", "nodes")
+        .selectAll("circle")
+        .data(graph.nodes)
+        .enter().append("circle")
+        .attr("r", 5)
+        .attr("fill", function(d) { return color(d.group); })
+        .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
 
-// 不显示图例
-    chart.legend(false);
-// 使用layout，用户可以自己编写自己的layout
-// 仅约定输出的节点 存在 id,x，y字段即可
-    var layout = new Layout.Tree({
-        nodes: datatree
-    });
-    var nodes = layout.getNodes();
-    var edges = layout.getEdges();
+    node.append("title")
+        .text(function(d) { return d.id; });
 
-// 首先绘制 edges，点要在边的上面
-// 创建单独的视图
-    var edgeView = chart.createView();
-    edgeView.source(edges);
-    edgeView.coord().transpose(); //
-    edgeView.axis(false);
-    edgeView.tooltip(false);
-// Stat.link 方法会生成 ..x, ..y的字段类型，数值范围是 0-1
-    edgeView.edge()
-        .position(Stat.link('source*target',nodes))
-        .shape('smooth')
-        .color('#a8a8a8');
+    simulation
+        .nodes(graph.nodes)
+        .on("tick", ticked);
 
-// 创建节点视图
-    var nodeView = chart.createView();
-    nodeView.coord().transpose(); //'polar'
-    nodeView.axis(false);
+    simulation.force("link")
+        .links(graph.links);
 
-// 节点的x,y范围是 0，1
-// 因为边的范围也是 0,1所以正好统一起来
-    nodeView.source(nodes, {
-        x: {min: 0,max:1},
-        y: {min: 0, max:1},
-        value: {min: 0}
-    });
+    function ticked() {
+        link
+            .attr("x1", function(d) { return d.source.x; })
+            .attr("y1", function(d) { return d.source.y; })
+            .attr("x2", function(d) { return d.target.x; })
+            .attr("y2", function(d) { return d.target.y; });
 
-    nodeView.point().position('x*y').color('blue').size(3).label('name', {
-        offset: 5,
-        labelEmit: true,
-        fill: '#fff', // 文本的颜色
-        fontSize: '12', // 文本大小
-        fontWeight: 'bold', // 文本粗细
-    })
-        .tooltip('name');
-    chart.render();
-
-    var Stat = G2.Stat;
-    var chart = new G2.Chart({
-        id : 'teac_time',
-        forceFit: true,
-        height: 450
-    });
-    var Frame = G2.Frame;
-    var frame = new Frame(data_teacher);
-    frame = Frame.sort(frame, 'release');
-    chart.source(frame, {
-        year: {
-            alias: 'year',
-            range: [0, 1],
-            fill: '#cecece', // 文本的颜色
-            fontSize: '12', // 文本大小
-            fontWeight: 'normal' // 文本粗细
-        },
-        number: {
-            alias: 'times',
-            fill: '#cecece', // 文本的颜色
-            fontSize: '12', // 文本大小
-            fontWeight: 'normal' // 文本粗细
-
-        }
-    });
-    chart.axis('year', {
-        labels: {
-            //autoRotate: true | false, // 文本是否允许自动旋转
-            label: {
-                textAlign: 'center', // 文本对齐方向，可取值为： left center right
-                fill: '#cecece', // 文本的颜色
-                fontSize: '12', // 文本大小
-                fontWeight: 'normal' // 文本粗细
-                //rotate: 30 // 文本旋转角度
-            }
-        }
-    });
-    chart.axis('number', {
-        labels: {
-            //autoRotate: true | false, // 文本是否允许自动旋转
-            label: {
-                textAlign: 'center', // 文本对齐方向，可取值为： left center right
-                fill: '#cecece', // 文本的颜色
-                fontSize: '12', // 文本大小
-                fontWeight: 'normal'// 文本粗细
-                //rotate: 30 // 文本旋转角度
-            }
-        }
-    });
-    chart.interval().position('year*number').color('#de00da');
-    chart.render();
+        node
+            .attr("cx", function(d) { return d.x; })
+            .attr("cy", function(d) { return d.y; });
+    }
 });
 
+function dragstarted(d) {
+    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+}
 
+function dragged(d) {
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+}
+
+function dragended(d) {
+    if (!d3.event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+}
+//net graph--------------------------------------------
 //coworker_times
 
 //柱 学者和老师的合作情况

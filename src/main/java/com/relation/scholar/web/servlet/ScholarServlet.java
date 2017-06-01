@@ -83,11 +83,11 @@ public class ScholarServlet extends BaseServlet {
         requestDispatcher.forward(request,response);
     }
     public void getAjaxNetJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        JSONObject s=scholarService.getCollaboratorNet(1,request.getParameter("advisor"));
+        JSONObject s=scholarService.getNet(request.getParameter("advisee"),Integer.parseInt(request.getParameter("advisee_id")));
         response.getWriter().write(s.toString());
     }
     public void getAjaxTreeJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getMentorTree(3,request.getParameter("advisee")).toString());
+        response.getWriter().write(scholarService.getTree(request.getParameter("advisee"),Integer.parseInt(request.getParameter("advisee_id"))).toString());
     }
     public void getAjaxDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.getWriter().write(scholarService.getDetail(Integer.parseInt(request.getParameter("advisee_id"))).toString());

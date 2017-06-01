@@ -87,24 +87,6 @@
 <%@include file="/jsps/pager/header.jsp" %>
 
 <div class="container" style="margin-top:50px;">
-    <!--header role="banner">
-        <div class="r_nav">
-            <div class="r_box"><em>h-index:</em></div>
-            <div class="r_nbox"><a><span>19</span></a></div>
-            <div class="r_nbox"></div>
-        </div>
-        <div class="r_nav">
-            <div class="r_box"><em>h-index:</em></div>
-            <div class="r_nbox"></div>
-            <div class="r_nbox"></div>
-            <div class="r_nbox"></div>
-        </div>
-        <div class="r_nav">
-            <div class="r_box"><em>h-index:</em></div>
-            <div class="r_nbox"></div>
-            <div class="r_nbox"></div>
-        </div>
-    </header-->
     <ul class="list-unstyled">
         <c:forEach items="${pb.beanList}" var="scholar">
             <div class="row">

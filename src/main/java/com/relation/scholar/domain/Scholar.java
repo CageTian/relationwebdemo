@@ -14,7 +14,7 @@ public class Scholar {
     private int paper_num;
     private int col_cop_times;
     private String institution;
-
+    private int statue;//0:无tree无net，1：有tree无net，2：无tree有net，3：有tree有net
     public int getAdvisee_id() {
         return advisee_id;
     }
