@@ -274,25 +274,26 @@ ul.nav-tabs.affix{
                 </div>
                 <div class="col-sm-8">
                     <div class="row">
-                        <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h>;</h3>
+                        <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h></h3>
+                        <a style="display: none;" type="hidden" id="my_advisee_id">${requestScope.get("scholar").advisee_id}</a>
                     </div>
-                    <div class="row"><h3>Institution:<h id="advisor">${requestScope.get("scholar").advisor}</h>;</h3></div>
+                    <div class="row"><h3>Advisor:<h id="advisor">${requestScope.get("scholar").advisor}</h></h3></div>
                     <div class="row">
                         <div class="lanren">
                         <div class="flip-3d">
                             <figure > <img src="${pageContext.request.contextPath}/resource/startyear.jpg">
-                                <figcaption id="test">year</figcaption>
+                                <figcaption id="test">${requestScope.get("scholar").paper_start_year}</figcaption>
                             </figure>
                         </div>
 
                         <div class="flip-3d">
                             <figure> <img src="${pageContext.request.contextPath}/resource/paper.jpg">
-                                <figcaption>paper</figcaption>
+                                <figcaption>${requestScope.get("scholar").paper_num}</figcaption>
                             </figure>
                         </div>
                         <div class="flip-3d">
                             <figure> <img src="${pageContext.request.contextPath}/resource/collaborator.jpg">
-                                <figcaption>coworkes</figcaption>
+                                <figcaption>${requestScope.get("scholar").col_cop_times}</figcaption>
                             </figure>
                         </div>
                         </div>
@@ -387,7 +388,7 @@ ul.nav-tabs.affix{
         <div class="col-xs-9">
             <div id="section-1">
                 <hr><h4>Academic Family Tree</h4><hr>
-                <div id="tree3">
+                <div id="tree">
                 </div>
             </div>
     </div>

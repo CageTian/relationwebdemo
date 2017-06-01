@@ -102,7 +102,7 @@
                                     <h5><a href=<c:url value='/ScholarServlet?method=ScholarInfo&advisee_id=${scholar.advisee_id}'/> >${scholar.advisee}</a> </h5>
                                 </div>
                                 <div class="r_info">
-                                    <span>Paper</span>:  &nbsp;&nbsp;|&nbsp;&nbsp; <span>Citation</span>:
+                                    <span>Paper</span>:${scholar.paper_num}  &nbsp;&nbsp;|&nbsp;&nbsp; <span>Collaborattion</span>:${scholar.col_cop_times}
                                 </div>
                                 <div class="r_advisor">
                                     <span>advisor: <a href="#" class="btn btn-sm">${scholar.advisor}</a></span>
@@ -110,7 +110,7 @@
                                 <div class="r_beg text-muted">
                                     <span>beginYear:${scholar.start_year}</span>
                                 </div>
-                            </div
+                            </div>
                             <div class="col-sm-2">
                                 <div class="feed" id="feed1">
 
