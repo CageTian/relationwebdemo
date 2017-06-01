@@ -1,4 +1,4 @@
-
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
 
 /*搜索框*/
 .cf:before, .cf:after{
@@ -114,8 +114,11 @@
 
 /*图片滑停*/
   .single-member{
-      width: 280px; float: left; /*margin: 30px 2.5%;*/ background-color: #fff; text-align: center; position: relative;
-      margin:0 auto;
+      text-align: center;
+      position: relative;
+      width: 280px;
+      float: left; margin: 30px 2.5%; background-color: #fff;
+      /*margin:0 auto;*/
   }
 .member-image img{max-width: 100%; vertical-align: middle;}
 /*h3 {font-size: 24px; font-weight: normal; margin: 10px 0 0; text-transform: uppercase;}
@@ -137,3 +140,123 @@ p {font-size: 14px; font-weight: 300; line-height: 22px; padding: 0 30px; margin
     .team-members{text-align: center;}
     .single-member{float: none; display: inline-block; vertical-align: bottom;}
 }
+
+/*鼠标悬停*/
+.tilter {
+    display: block;
+    position: relative;
+    width: 200px;/*300*/
+    height: 277px;/*415*/
+    margin: 1.5em 2.5em;
+    color: #fff;
+    flex: none;
+    perspective: 1000px;
+}
+
+.tilter * {
+    pointer-events: none;
+}
+
+.tilter:hover,
+.tilter:focus {
+    color: #fff;
+    outline: none;
+}
+
+/*
+.tilter__figure,
+.tilter__deco,
+.tilter__caption {
+	will-change: transform;
+}*/
+
+.tilter__figure,
+.tilter__image {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.tilter__figure > * {
+    transform: translateZ(0px); /* Force correct stacking order */
+}
+
+.smooth .tilter__figure,
+.smooth .tilter__deco--overlay,
+.smooth .tilter__deco--lines,
+.smooth .tilter__deco--shine div,
+.smooth .tilter__caption {
+    transition: transform 0.2s ease-out;
+}
+
+.tilter__figure {
+    position: relative;
+}
+
+.tilter__figure::before {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 5%;
+    left: 5%;
+    box-shadow: 0 30px 20px rgba(35,32,39,0.5);
+}
+
+.tilter__deco {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.tilter__deco--overlay {
+    background-image: linear-gradient(45deg, rgba(226, 60, 99, 0.4), rgba(145, 58, 252, 0.4), rgba(16, 11, 192, 0.4));
+}
+
+.tilter__deco--shine div {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.25) 50%, transparent 100%);
+}
+
+.tilter__deco--lines {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.tilter__caption {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 4em;
+}
+
+.tilter__title {
+    margin: 0;
+    font-weight: normal;
+    font-size: 2.5em;
+    font-family: 'Abril Fatface', serif;
+    line-height: 1;
+}
+
+.tilter__description {
+    margin: 1em 0 0 0;
+    font-size: 0.85em;
+    letter-spacing: 0.15em;
+}
+
+/* Individual styles */
+
+/* Example 1 (Default) */
+.tilter--1 .tilter__figure::before {
+    box-shadow: 0 30px 20px rgba(0,0,0,0.5);
+}
+
