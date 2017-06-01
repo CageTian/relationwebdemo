@@ -196,7 +196,7 @@ ul.nav-tabs.affix{
                         <a href="${pageContext.request.contextPath}/jsps/welcome.jsp"><span class="glyphicon glyphicon-home" ></span>Home</a>
                     </li>
                     <li>
-                        <a href=<c:url value='/ScholarServlet?method=ScholarFeedback&bid=${scholar.bid}'/>><span class="glyphicon glyphicon-pencil" ></span>Modify</a>
+                        <a href=<c:url value='/ScholarServlet?method=ScholarFeedback&advisee_id=${scholar.advisee_id}'/>><span class="glyphicon glyphicon-pencil" ></span>Modify</a>
                     </li>
                 </ul>
             </div>

@@ -110,13 +110,7 @@
                                 <div class="r_beg text-muted">
                                     <span>beginYear:${scholar.start_year}</span>
                                 </div>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="feed" id="feed1">
-
-                                    <div class="heart " id="like1" rel="like"></div> <!--div class="likeCount" id="likeCount1">14</div-->
-                                </div>
-                            </div>
+                            </div
                             <div class="col-sm-2">
                                 <div class="feed" id="feed1">
 
