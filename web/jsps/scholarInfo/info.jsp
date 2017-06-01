@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/guide_serch.css">
     <script src="https://a.alipayobjects.com/jquery/jquery/1.11.1/jquery.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://a.alipayobjects.com/g/datavis/g2/2.3.0/g2.js"></script>
     <script type="text/javascript">
         $(function() {/*Map<String(Cookie名称),Cookie(Cookie本身)>*/
@@ -124,8 +125,42 @@ h4,h3{
         display: none;
     }
 }
+
+ul.nav-tabs{
+    width: 140px;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+ul.nav-tabs li{
+    margin: 0;
+    border-top: 1px solid #ddd;
+}
+ul.nav-tabs li:first-child{
+    border-top: none;
+}
+ul.nav-tabs li a{
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 0;
+}
+ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+    color: #fff;
+    background: #0088cc;
+    border: 1px solid #0088cc;
+}
+ul.nav-tabs li:first-child a{
+    border-radius: 4px 4px 0 0;
+}
+ul.nav-tabs li:last-child a{
+    border-radius: 0 0 4px 4px;
+}
+ul.nav-tabs.affix{
+    top: 30px; /* Set the top position of pinned element */
+}
 </style>
-<body >
+<body data-spy="scroll" data-target="#myScrollspy">
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="touming">
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -269,81 +304,125 @@ h4,h3{
 
         </div>
     </div>
-    <!--<div class="row">
-        <div class="col-sm-10 col-sm-offset-1">
-            <ul id="myTab" class="nav nav-tabs">
-                <li class="active"><a href="#Relationtree" data-toggle="tab">
-                    Academic Family Tree</a>
-                </li>
-                <li><a href="#advisor" data-toggle="tab">Collaboration Times with Advisor</a></li>
-                <li><a href="#collaborator" data-toggle="tab">Collaboration Network</a></li>
 
+    <%--<div class="row">--%>
+        <%--<div class="col-sm-10 col-sm-offset-1">--%>
+            <%--<ul id="myTab" class="nav nav-tabs">--%>
+                <%--<li class="active"><a href="#Relationtree" data-toggle="tab" onclick="renderChart(1)">--%>
+                    <%--Academic Family Tree</a>--%>
+                <%--</li>--%>
+                <%--<li><a href="#advisor2" data-toggle="tab">Collaboration Times with Advisor</a></li>--%>
+                <%--<li><a href="#collaborator" data-toggle="tab" onclick="renderChart(3)">Collaboration Network</a></li>--%>
+
+            <%--</ul>--%>
+        <%--</div>--%>
+        <%--<div id="myTabContent" class="tab-content col-sm-10 col-sm-offset-1">--%>
+            <%--<div class="tab-pane fade in active" id="Relationtree">--%>
+                <%--<div  id="tree3">--%>
+                <%--</div>--%>
+
+            <%--</div>--%>
+            <%--<div class="tab-pane fade" id="advisor2">--%>
+                <%--<div class="col-sm-4">      </div>--%>
+                <%--<div class="col-sm-8" id="teac_time">--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <%--<div class="tab-pane fade" id="collaborator">--%>
+                <%--<div class="col-sm-6 web" >--%>
+                    <%--<hr><h4>Collaboration Network</h4><hr>--%>
+                <%--</div>--%>
+                <%--<div class="col-sm-6" id="coworker">--%>
+                    <%--<hr><h4>coworker</h4><hr>--%>
+
+                <%--</div>--%>
+            <%--</div>--%>
+
+        <%--</div>--%>
+
+        <%--<script>--%>
+            <%--$('#myTab a').click(function (e) {--%>
+                <%--e.preventDefault();--%>
+                <%--$(this).tab('show');--%>
+            <%--})--%>
+
+
+        <%--</script>--%>
+        <%--<script type="text/javascript">--%>
+            <%--/*--%>
+            <%--$(document).ready(function()--%>
+            <%--{--%>
+                <%--var width=$("#tree3").width()+"px";--%>
+                <%--alert(width);--%>
+                <%--$('#myTab a:eq(0)').click(function(){--%>
+                    <%--$("#tree3").animate({width:"300px"},10);--%>
+                    <%--$("#tree3").animate({width:"945px"},10);--%>
+                <%--});--%>
+            <%--});*/--%>
+            <%--function renderChart(index){--%>
+                <%--if(index == 1){--%>
+                     <%--alert(1);--%>
+                    <%--chart.clean();--%>
+                    <%--chart.render();--%>
+
+
+                <%--}--%>
+
+                <%--if(index == 3){--%>
+
+                    <%--chart3.clear();--%>
+                    <%--chart3.repaint();--%>
+                <%--}--%>
+            <%--}--%>
+        <%--</script>--%>
+
+    <%--</div>--%>
+    <div class="row">
+        <div class="col-xs-3" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
+                <li class="active"><a href="#section-1">Academic Family</a></li>
+                <li><a href="#section-2">Advisor</a></li>
+                <li><a href="#section-3">Collaboration</a></li>
             </ul>
-
-        <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade in active" id="Relationtree">
-                <div class="col-sm-10" id="tree">
-
-                </div>
-
-            </div>
-            <div class="tab-pane fade" id="advisor">
-                <div class="col-sm-4">      </div>
-                <div class="col-sm-8" id="teac_time">
-
+        </div>
+        <div class="col-xs-9">
+            <div id="section-1">
+                <hr><h4>Academic Family Tree</h4><hr>
+                <div id="tree3">
                 </div>
             </div>
-            <div class="tab-pane fade" id="collaborator">
-                <div class="col-sm-6 web"></div>
-                <div class="col-sm-6" id="coworker"></div>
+    </div>
+
+    <div class="row"  id="section-2">
+
+        <div class="col-sm-10 col-sm-offset-2" >
+            <hr><h4>Collaboration Times with Advisor</h4><hr>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-8" id="teac_time">
+
+
             </div>
-            <!--div class="tab-pane fade" id="ejb">
-                <p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
-                </p>
-            </div>
         </div>
-        </div>
-        <script>
-            $('#myTab a').click(function (e) {
-                e.preventDefault();
-                $(this).tab('show');
-            })
 
-        </script>
-
-    </div>-->
-
-    <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-5" id="student">
-            <hr><h4>Collaboration Times with Descendant</h4><hr>
-
-        </div>
-        <div class="col-sm-5" id="coworker">
-            <hr><h4>coworker</h4><hr>
-
-        </div>
-        <div class="col-sm-1"></div>
     </div>
 
 
-    <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10" id="tree">
-            <hr><h4>Academic Family Tree</h4><hr>
+    <%--<div class="row">--%>
+        <%--<div class="col-sm-1"></div>--%>
+        <%--&lt;%&ndash;<div class="col-sm-10" id="tree3">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<hr><h4>Academic Family Tree</h4><hr>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--<div class="col-sm-1"></div>--%>
+    <%--</div>--%>
+    <div class="row" id="section-3">
+        <div class="col-sm-5 col-sm-offset-2" id="coworker">
+            <hr><h4>Ego Network</h4><hr>
         </div>
-        <div class="col-sm-1"></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-1"></div>
         <div class="col-sm-5 web" >
             <hr><h4>Collaboration Network</h4><hr>
         </div>
-        <div class="col-sm-5" id="teac_time">
-            <hr><h4>Collaboration Times with Advisor</h4><hr>
-        </div>
-        <div class="col-sm-1"></div>
     </div>
+
+
 </div>
 
 
@@ -357,7 +436,7 @@ h4,h3{
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/common/web.js" type="text/javascript"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 
 
 
