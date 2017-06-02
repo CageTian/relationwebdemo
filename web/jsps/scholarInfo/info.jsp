@@ -270,7 +270,7 @@ ul.nav-tabs.affix{
         <div class="col-sm-5 col-sm-offset-1">
             <div class="row">
                 <div class="col-sm-4" style="margin-top: 7%">
-                    <img src="${pageContext.request.contextPath}/resource/profile1.jpg" class="img-responsive">
+                    <img src="${pageContext.request.contextPath}<c:if test="${empty scholar.avantar}">/resource/profile1.jpg</c:if><c:if test="${!empty scholar.avantar}">${scholar.avantar}</c:if>" class="img-responsive">
                 </div>
                 <div class="col-sm-8">
                     <div class="row">

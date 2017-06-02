@@ -14,6 +14,24 @@ public class Scholar {
     private int paper_num;
     private int col_cop_times;
     private String institution;
+    private String avantar;
+
+    public String getAvantar() {
+        return avantar;
+    }
+
+    public void setAvantar(String avantar) {
+        this.avantar = avantar;
+    }
+
+    public int getStatue() {
+        return statue;
+    }
+
+    public void setStatue(int statue) {
+        this.statue = statue;
+    }
+
     private int statue;//0:无tree无net，1：有tree无net，2：无tree有net，3：有tree有net
     public int getAdvisee_id() {
         return advisee_id;

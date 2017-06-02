@@ -95,7 +95,7 @@
                     <div class="intro">
                         <li class="row">
                             <div class="photo">
-                                <img class="scholer_photo" src="${pageContext.request.contextPath}/resource/profile1.jpg">
+                                <img class="scholer_photo" src="${pageContext.request.contextPath}<c:if test="${empty scholar.avantar}">/resource/profile1.jpg</c:if><c:if test="${!empty scholar.avantar}">${scholar.avantar}</c:if>">
                             </div>
                             <div class="col-sm-7">
                                 <div class="r_name">
