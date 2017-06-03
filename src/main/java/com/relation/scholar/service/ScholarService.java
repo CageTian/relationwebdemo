@@ -1,5 +1,4 @@
 package com.relation.scholar.service;
-
 import com.relation.pager.PageBean;
 import com.relation.pager.sqlExpression;
 import com.relation.scholar.dao.ScholarDao;
@@ -7,8 +6,6 @@ import com.relation.scholar.domain.Scholar;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.junit.Test;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.sql.SQLException;
 import java.util.*;
 
@@ -24,9 +21,9 @@ public class ScholarService {
             throw new RuntimeException();
         }
     }
-    public Scholar getScholarInfo(String bid){
+    public Scholar getScholarInfo(int advisee_id){
         try {
-            return scholarDao.getScholarInfoByName(bid);
+            return scholarDao.getScholarInfoByName(advisee_id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -113,136 +110,93 @@ public class ScholarService {
         return jsonObject;
 
     }
-    public JSONObject getCollaboratorCir(String advisor) {
-        List<sqlExpression>exprList=new ArrayList<sqlExpression>();
-        exprList.add(new sqlExpression("all_author","like","%"+advisor+"%"));
-        List<Map<String, Object>> mapList= null;
-        try {
-            mapList = scholarDao.getCollaborator(advisor);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    public JSONArray getDetail(int advisee_id){
+        Map map=scholarDao.getDetail(advisee_id);
 
-        //Creat Link&nodes list
-        List<Map<String,Object>> link=new ArrayList<Map<String, Object>>();
-        List<Map<String,Object>> nodes=new ArrayList<Map<String, Object>>();
+        JSONArray paperArray=new JSONArray();
+        JSONArray advisorArray=new JSONArray();
+        JSONArray colArray=new JSONArray();
+        JSONArray detailArray=new JSONArray();
 
-        for(Map<String, Object> map:mapList){
-            String[] tmp=map.get("all_author").toString().split("#");
-            for(String name:tmp){
-                if(!advisor.equals(name))
-                {
-                    Map<String, Object>map1=new HashMap<String,Object>();
-                    map1.put("id",name);
-                    map1.put("group",2);
-                    if(!nodes.contains(map1)){
-                        nodes.add(map1);
+        String paper=(String) map.get("paper_detail");
+        String advisor=(String) map.get("advisor_cop_detail");
+        String col=(String) map.get("col_cop_detail");
+        String[] paper_year=paper.split(",");
+        String[] advisee_year=advisor.split(",");
+        String[] col_year=col.split(",");
 
-                        Map<String, Object>map3=new HashMap<String,Object>();
-                        map3.put("source",advisor);
-                        map3.put("target",name);
-                        map3.put("value",3);
-                        link.add(map3);
-
-                    }
-                }
-            }
-        }
-        Map<String, Object>map2=new HashMap<String,Object>();
-        map2.put("id",advisor);
-        map2.put("group",1);
-        nodes.add(map2);
-
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("nodes", JSONArray.fromObject(nodes));
-        jsonObject.put("links",JSONArray.fromObject(link));
-        return jsonObject;
-    }
-    public JSONArray getPaperDetail(String advisee){
-        JSONArray jsonArray=new JSONArray();
-        Map map=scholarDao.getPaperDetail(advisee);
-        String s=(String) map.get("paper_detail");
-        String[] year=s.split(",");
-        for(String y:year){
+        for(String y:paper_year){
             JSONObject jsonObject=new JSONObject();
             jsonObject.put("year",y.substring(0,4));
             jsonObject.put("number",Integer.parseInt(y.substring(5)));
-            jsonArray.add(jsonObject);
+            paperArray.add(jsonObject);
         }
-        jsonArray.remove(0);
-        return jsonArray;//第一个jsonObeject是开始年份和总论文数
-    }
-    public JSONArray getAdvisorDetail(String advisee){
-        JSONArray jsonArray=new JSONArray();
-        Map map=scholarDao.getAdviseeCopDetail(advisee);
-        String s=(String) map.get("advisor_cop_detail");
-        String[] year=s.split(",");
-        for(String y:year){
+
+        for(String y:advisee_year){
             JSONObject jsonObject=new JSONObject();
             jsonObject.put("year",y.substring(0,4));
             jsonObject.put("number",Integer.parseInt(y.substring(5)));
-            jsonArray.add(jsonObject);
+            advisorArray.add(jsonObject);
         }
-        return jsonArray;
-    }
-    public JSONArray getColDetail(String advisee){
-        JSONArray jsonArray=new JSONArray();
-        Map map=scholarDao.getColCopDetail(advisee);
-        String s=(String) map.get("col_cop_detail");
-        String[] year=s.split(",");
+
         int count=0;
-        for(String y:year){
+        for(String y:col_year){
             if(count<=20){
                 count++;
                 JSONObject jsonObject=new JSONObject();
                 jsonObject.put("coworker",y.substring(0,y.indexOf(":")));
                 jsonObject.put("times",Integer.parseInt(y.substring(y.indexOf(":")+1)));
-                jsonArray.add(jsonObject);
+                colArray.add(jsonObject);
             }
             else break;
         }
-        return jsonArray;
+
+
+        detailArray.add(paperArray);
+        detailArray.add(advisorArray);
+        detailArray.add(colArray);
+
+        return detailArray;//第一个jsonObeject是开始年份和总论文数
     }
 
-    /**
-     * 获得学者合作圈
-     * 未完成：合作次数
-     * @param cop_name
-     * @return
-     * @throws SQLException
-     */
-    public JSONObject getCollaboratorCircle(String cop_name) throws SQLException {
-        List<sqlExpression>exprList=new ArrayList<sqlExpression>();
-        exprList.add(new sqlExpression("all_author","like","%"+cop_name+"%"));
-        List<Map<String, Object>> mapList=scholarDao.getCollaborator(cop_name);
-
-        Map<String,String> cop=new HashMap<String, String>();
-        for(Map<String, Object> map:mapList){
-            String[] tmp=map.get("all_author").toString().split("#");
-            for(String name:tmp){
-                if(!cop_name.equals(name))
-                {
-                    cop.put(name,map.get("year").toString().substring(0,4));
-                }
-            }
+    public JSONObject getTree(String advisor,int advisee_id){
+        JSONObject jsonObject=new JSONObject();
+        Object o=scholarDao.getTree(advisee_id).get("advisee_tree");
+        if(o==null){
+            jsonObject=getMentorTree(3,advisor);
+            scholarDao.setTree(jsonObject,advisee_id);
+            return jsonObject;
         }
-        return JSONObject.fromObject(cop);
+        else {
+            return JSONObject.fromObject(o);
+        }
+    }
+    public JSONObject getNet(String advisor,int advisee_id){
+        JSONObject jsonObject=new JSONObject();
+        Object o=scholarDao.getNet(advisee_id).get("col_net");
+        if(o==null){
+            jsonObject=getCollaboratorNet(1,advisor);
+            scholarDao.setNet(jsonObject,advisee_id);
+            return jsonObject;
+        }
+        else {
+            return JSONObject.fromObject(o);
+        }
+    }
+    @Test
+    public void getNetTest(){
+        System.out.println(getTree("feng xia",762695));
     }
     @Test
     public void MentorTreeTest(){
-        System.out.println(getMentorTree(3,"Sanjeev Saxena"));
+        System.out.println(getMentorTree(3,"feng xia"));
     }
     @Test
     public void copNetTest() throws SQLException {
         getCollaboratorNet(2,"Sanjeev Saxena");
     }
     @Test
-    public void copCircleTest() throws SQLException {
-        String name="feng xia";
-        System.out.println(getCollaboratorCir(name));
-    }
-    @Test
-    public void paperTest(){
-        System.out.println(getColDetail("feng xia"));
+    public void detailTest(){
+        System.out.println(getDetail(762695));
     }
 }

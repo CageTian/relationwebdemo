@@ -4,6 +4,7 @@ import com.relation.pager.PageBean;
 import com.relation.pager.sqlExpression;
 import com.relation.scholar.domain.Scholar;
 import com.relation.utils.JDBC.TxQueryRunner;
+import net.sf.json.JSONObject;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.*;
 
@@ -11,6 +12,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
+ * some test
  * Created by T.Cage on 2017/1/21.
  */
 public class ScholarDao{
@@ -30,14 +32,14 @@ public class ScholarDao{
         /*
 		 * 3. 总记录数
 		 */
-        String sql = "select count(*) from mentorship" + whereSql;
+        String sql = "select count(*) from advisee_info" + whereSql;
         Number number = (Number)qr.query(sql, new ScalarHandler(), params.toArray());
         int totalRecord = number.intValue();//得到了总记录数
         System.out.println(totalRecord);
 		/*
 		 * 4. 得到beanList，即当前页记录
 		 */
-        sql = "select * from mentorship" + whereSql + " order by advisee limit ?,?";
+        sql = "select * from advisee_info" + whereSql + " order by advisee limit ?,?";
         params.add((pageCount - 1) * pageSize);//当前页首行记录的下标
         params.add(pageSize);//一共查询几行，就是每页记录数
 
@@ -66,19 +68,15 @@ public class ScholarDao{
      * @return
      * @throws SQLException
      */
-
     public PageBean<Scholar> findByAdvisee(String advisee, int pc) throws SQLException {
         List<sqlExpression> exprList = new ArrayList<sqlExpression>();
         exprList.add(new sqlExpression("advisee", "like", "%" + advisee + "%"));
         return findByCriteria(exprList, pc);
     }
-    public Scholar  getScholarInfoByName(String bid) throws SQLException {
-        String sql="SELECT * FROM mentorship WHERE bid=?";
-        return qr.query(sql,new BeanHandler<Scholar>(Scholar.class),bid);
+    public Scholar  getScholarInfoByName(int advisee_id) throws SQLException {
+        String sql="SELECT * FROM advisee_info WHERE advisee_id=?";
+        return qr.query(sql,new BeanHandler<Scholar>(Scholar.class),advisee_id);
     }
-
-
-
     /**
      * 获得合作者List（所有合作者，合作时间）
      * @param advisor
@@ -106,7 +104,7 @@ public class ScholarDao{
      * @return
      */
     public List<String> getMentorship(String advisor) {
-        String sql = "select * from mentorship where advisor= ? order by possibilities DESC";
+        String sql = "select advisee from advisee_info where advisor= ? order by possibility DESC";
         List<String>advisee_list=new ArrayList<String>();
         try {
             advisee_list= (List<String>) qr.query(sql, new ColumnListHandler(),advisor);
@@ -115,7 +113,6 @@ public class ScholarDao{
         }
         return advisee_list;
     }
-
 
     public List<Map<String,Object>> getCopLinkList(String[]cop_arr){
         List<Map<String,Object>>mapList=new ArrayList<Map<String, Object>>();
@@ -132,15 +129,10 @@ public class ScholarDao{
         return mapList;
     }
 
-    /**
-     * 获得学者年份与发表论文数目
-     * @param advisee
-     * @return
-     */
-    public Map<String, Object> getPaperDetail(String advisee){
-        String sql="select paper_detail from advisee where advisee=? ";
+    public Map<String,Object>getDetail(int advisee_id){
+        String sql="select paper_detail,advisor_cop_detail,col_cop_detail from advisee_info where advisee_id=? ";
         try {
-            return qr.query(sql,new MapHandler(),advisee);
+            return qr.query(sql,new MapHandler(),advisee_id);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -148,15 +140,10 @@ public class ScholarDao{
         return null;
     }
 
-    /**
-     * 学者与其老师合作次数
-     * @param advisee
-     * @return
-     */
-    public Map<String, Object> getAdviseeCopDetail(String advisee){
-        String sql="select advisor_cop_detail from advisee where advisee=? ";
+    public Map<String,Object>getTree(int advisee_id){
+        String sql="select advisee_tree from advisee_info where advisee_id=? ";
         try {
-            return qr.query(sql,new MapHandler(),advisee);
+            return qr.query(sql,new MapHandler(),advisee_id);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -164,19 +151,36 @@ public class ScholarDao{
         return null;
     }
 
-    /**
-     * 学者与其合作者合作情况
-     * @param advisee
-     * @return
-     */
-    public Map<String, Object> getColCopDetail(String advisee){
-        String sql="select col_cop_detail from advisee where advisee=? ";
+    public Map<String,Object>getNet(int advisee_id){
+        String sql="select col_net from advisee_info where advisee_id=? ";
         try {
-            return qr.query(sql,new MapHandler(),advisee);
+            return qr.query(sql,new MapHandler(),advisee_id);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int setTree(JSONObject jsonObject,int advisee_id){
+        try {
+            String sql="update advisee_info set advisee_tree=? where advisee_id=?";
+            Object[] params={jsonObject.toString(),advisee_id};
+            return qr.update(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public int setNet(JSONObject jsonObject,int advisee_id){
+        try {
+            String sql="update advisee_info set col_net=? where advisee_id=?";
+            Object[] params={jsonObject.toString(),advisee_id};
+            return qr.update(sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 }

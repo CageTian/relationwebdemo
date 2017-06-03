@@ -87,24 +87,6 @@
 <%@include file="/jsps/pager/header.jsp" %>
 
 <div class="container" style="margin-top:50px;">
-    <!--header role="banner">
-        <div class="r_nav">
-            <div class="r_box"><em>h-index:</em></div>
-            <div class="r_nbox"><a><span>19</span></a></div>
-            <div class="r_nbox"></div>
-        </div>
-        <div class="r_nav">
-            <div class="r_box"><em>h-index:</em></div>
-            <div class="r_nbox"></div>
-            <div class="r_nbox"></div>
-            <div class="r_nbox"></div>
-        </div>
-        <div class="r_nav">
-            <div class="r_box"><em>h-index:</em></div>
-            <div class="r_nbox"></div>
-            <div class="r_nbox"></div>
-        </div>
-    </header-->
     <ul class="list-unstyled">
         <c:forEach items="${pb.beanList}" var="scholar">
             <div class="row">
@@ -113,20 +95,20 @@
                     <div class="intro">
                         <li class="row">
                             <div class="photo">
-                                <img class="scholer_photo" src="${pageContext.request.contextPath}/resource/profile1.jpg">
+                                <img class="scholer_photo" src="${pageContext.request.contextPath}<c:if test="${empty scholar.avantar}">/resource/profile1.jpg</c:if><c:if test="${!empty scholar.avantar}">${scholar.avantar}</c:if>">
                             </div>
                             <div class="col-sm-7">
                                 <div class="r_name">
-                                    <h5><a href=<c:url value='/ScholarServlet?method=ScholarInfo&bid=${scholar.bid}'/> >${scholar.advisee}</a> </h5>
+                                    <h5><a href=<c:url value='/ScholarServlet?method=ScholarInfo&advisee_id=${scholar.advisee_id}'/> >${scholar.advisee}</a> </h5>
                                 </div>
                                 <div class="r_info">
-                                    <span>Paper</span>:  &nbsp;&nbsp;|&nbsp;&nbsp; <span>Citation</span>:
+                                    <span>Paper</span>:${scholar.paper_num}  &nbsp;&nbsp;|&nbsp;&nbsp; <span>Collaborattion</span>:${scholar.col_cop_times}
                                 </div>
                                 <div class="r_advisor">
                                     <span>advisor: <a href="#" class="btn btn-sm">${scholar.advisor}</a></span>
                                 </div>
                                 <div class="r_beg text-muted">
-                                    <span>beginYear:${scholar.beginYear}</span>
+                                    <span>beginYear:${scholar.start_year}</span>
                                 </div>
                             </div>
                             <div class="col-sm-2">

@@ -42,8 +42,8 @@ public class ScholarServlet extends BaseServlet {
         return url;
     }
     public void ScholarInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String bid=request.getParameter("bid");
-        Scholar scholar=scholarService.getScholarInfo(bid);
+        String advisee_id=request.getParameter("advisee_id");
+        Scholar scholar=scholarService.getScholarInfo(Integer.parseInt(advisee_id));
         request.setAttribute("scholar", scholar);
         RequestDispatcher requestDispatcher=request.getRequestDispatcher("/jsps/scholarInfo/info.jsp");
         requestDispatcher.forward(request,response);
@@ -76,30 +76,21 @@ public class ScholarServlet extends BaseServlet {
         return "f:/jsps/book/list.jsp";
     }
     public void ScholarFeedback(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String bid=request.getParameter("bid");
-        Scholar scholar=scholarService.getScholarInfo(bid);
+        String advisee_id=request.getParameter("advisee_id");
+        Scholar scholar=scholarService.getScholarInfo(Integer.parseInt(advisee_id));
         request.setAttribute("scholar", scholar);
         RequestDispatcher requestDispatcher=request.getRequestDispatcher("/jsps/scholarInfo/feedback.jsp");
         requestDispatcher.forward(request,response);
     }
     public void getAjaxNetJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        JSONObject s=scholarService.getCollaboratorNet(1,request.getParameter("advisor"));
+        JSONObject s=scholarService.getNet(request.getParameter("advisee"),Integer.parseInt(request.getParameter("advisee_id")));
         response.getWriter().write(s.toString());
     }
-    public void getAjaxCircleJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getCollaboratorCir(request.getParameter("advisor")).toString());
-    }
     public void getAjaxTreeJson(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getMentorTree(3,request.getParameter("advisee")).toString());
+        response.getWriter().write(scholarService.getTree(request.getParameter("advisee"),Integer.parseInt(request.getParameter("advisee_id"))).toString());
     }
-    public void getAjaxPaperDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getPaperDetail(request.getParameter("advisee")).toString());
-    }
-    public void getAjaxAdvisorCopDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getAdvisorDetail(request.getParameter("advisee")).toString());
-    }
-    public void getAjaxColCopDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.getWriter().write(scholarService.getColDetail(request.getParameter("advisee")).toString());
+    public void getAjaxDetail(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.getWriter().write(scholarService.getDetail(Integer.parseInt(request.getParameter("advisee_id"))).toString());
     }
 }
 

@@ -160,7 +160,7 @@ ul.nav-tabs.affix{
     top: 30px; /* Set the top position of pinned element */
 }
 </style>
-<body>
+<body data-spy="scroll" data-target="#myScrollspy">
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="touming">
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -270,25 +270,25 @@ ul.nav-tabs.affix{
         <div class="col-sm-5 col-sm-offset-1">
             <div class="row">
                 <div class="col-sm-4" style="margin-top: 7%">
-                    <img src="${pageContext.request.contextPath}/resource/profile1.jpg" class="img-responsive">
+                    <img src="${pageContext.request.contextPath}<c:if test="${empty scholar.avantar}">/resource/profile1.jpg</c:if><c:if test="${!empty scholar.avantar}">${scholar.avantar}</c:if>" class="img-responsive">
                 </div>
                 <div class="col-sm-8">
                     <div class="row">
-
                         <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h></h3>
+                        <a style="display: none;" type="hidden" id="my_advisee_id">${requestScope.get("scholar").advisee_id}</a>
                     </div>
-                    <div class="row"><h3>Institution:<h id="advisor">${requestScope.get("scholar").advisor}</h></h3></div>
+                    <div class="row"><h3>Advisor:<h id="advisor">${requestScope.get("scholar").advisor}</h></h3></div>
                     <div class="row">
                         <div class="lanren">
                         <div class="flip-3d">
                             <figure > <img src="${pageContext.request.contextPath}/resource/startyear.jpg">
-                                <figcaption id="test">year</figcaption>
+                                <figcaption id="test">${requestScope.get("scholar").paper_start_year}</figcaption>
                             </figure>
                         </div>
 
                         <div class="flip-3d">
                             <figure> <img src="${pageContext.request.contextPath}/resource/paper.jpg">
-                                <figcaption>paper</figcaption>
+                                <figcaption>${requestScope.get("scholar").paper_num}</figcaption>
                             </figure>
                         </div>
                         <div class="flip-3d">
@@ -378,16 +378,24 @@ ul.nav-tabs.affix{
 
     <%--</div>--%>
     <div class="row">
-
-        <div class="col-xs-10 col-sm-10 col-sm-offset-1">
-                <hr><h4>Academic Family Tree</h4><hr>
-                <div id="tree3">
-            </div>
+        <div class="col-xs-3" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
+                <li class="active"><a href="#section-1">Academic Family</a></li>
+                <li><a href="#section-2">Advisor</a></li>
+                <li><a href="#section-3">Collaboration</a></li>
+            </ul>
         </div>
+        <div class="col-xs-9">
+            <div id="section-1">
+                <hr><h4>Academic Family Tree</h4><hr>
+                <div id="tree">
+                </div>
+            </div>
+    </div>
 
-    <div class="row" >
+    <div class="row"  id="section-2">
 
-        <div class="col-sm-10 col-sm-offset-1" >
+        <div class="col-sm-10 col-sm-offset-2" >
             <hr><h4>Collaboration Times with Advisor</h4><hr>
             <div class="col-sm-4"></div>
             <div class="col-sm-8" id="teac_time">
@@ -399,7 +407,14 @@ ul.nav-tabs.affix{
     </div>
 
 
-    <div class="row" >
+    <%--<div class="row">--%>
+        <%--<div class="col-sm-1"></div>--%>
+        <%--&lt;%&ndash;<div class="col-sm-10" id="tree3">&ndash;%&gt;--%>
+            <%--&lt;%&ndash;<hr><h4>Academic Family Tree</h4><hr>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+        <%--<div class="col-sm-1"></div>--%>
+    <%--</div>--%>
+    <div class="row" id="section-3">
         <div class="col-sm-5 col-sm-offset-2" id="coworker">
             <hr><h4>Ego Network</h4><hr>
         </div>
