@@ -40,7 +40,7 @@
                 <form class="navbar-form navbar-left" role="form" action="<c:url value='/ScholarServlet?'/>" method="get" id="searchForm">
                     <input  type="hidden" name="method" value="findByAdvisee" />
                     <div class="form-group">
-                        <input type="text" class="form-control" name="advisee" placeholder=" scholar,paper,field,organization">
+                        <input type="text" class="form-control" name="advisee" placeholder=" scholar">
                     </div>
                     <button type="submit" value="search" class="btn btn-default">search</button>
                 </form>

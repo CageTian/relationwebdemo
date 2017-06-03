@@ -221,7 +221,8 @@
         .sky-container .m_image{
             position:relative;
             right:0%;
-            top:5%;
+            top:-25%;
+            display: none;
         }
         .sky-container__left, .sky-container__right {
             display: inline-block;
@@ -283,19 +284,37 @@
     color:black;
     text-shadow: 0px 0px 3px #535c5e;
 }
+.fangfa{
+    border:0px;
+    background-image: url(${pageContext.request.contextPath}/resource/fangfabackground.jpg);
+    background-repeat:no-repeat;
+    background-size: 100% auto;
+    border-radius: 7px;
+    box-shadow: 0px 0px 10px #000;
+    color: #e4e4e4;
+}
 @media (min-width: 768px){
     .pingtai {
         height:230px;
+    }
+    .fangfa{
+        height:226px;
     }
 }
 @media (min-width: 992px) {
     .pingtai {
         height:295px;
     }
+    .fangfa{
+        height:292px;
+    }
 }
 @media (min-width: 1200px) {
     .pingtai {
         height:360px;
+    }
+    .fangfa{
+        height:354px;
     }
 }
 
@@ -330,9 +349,22 @@ margin-top: 20px;
 
 
 <!-- This pen isn't a fan of small view heights, check it out in  fullpage view for optimal viewing	 -->
-
+<script>
+    function showsky()
+    {
+        var skyimage =document.getElementById("skyimage");
+        skyimage.style.display="block";
+        alert("show");
+    }
+    function fadesky()
+    {
+        var skyimage=document.getElementById("skyimage");
+        skyimage.style.display="none";
+        alert("fade");
+    }
+</script>
 <div id="canvas3d" >
-    <div class="x-mark">
+    <div class="x-mark" onclick="fadesky()">
         <div class="container">
             <div class="left"></div>
             <div class="right"></div>
@@ -347,14 +379,14 @@ margin-top: 20px;
                 <div class="left-plane"></div>
                 <div class="right-plane"></div>
             </div>
-            <div class="text">About Us</div>
+            <div class="text" onclick="showsky()">About Us</div>
         </div>
 
         <div class="search">
             <form class="form-wrapper cf" role="form" action="<c:url value='/ScholarServlet?'/>" method="get" id="searchForm">
 
                 <input  type="hidden" name="method" value="findByAdvisee" />
-                <input class="st"  type="text" name="advisee" placeholder=" scholar,paper,field,organization" />
+                <input class="st"  type="text" name="advisee" placeholder=" scholar" />
                 <%--Pages:<input type="text" name="pc" value="1" /><br>--%>
                 <button type="submit" value="search" >search</button>
 
@@ -363,7 +395,7 @@ margin-top: 20px;
     </div>
 
     <div class="sky-container">
-        <div class="row m_image">
+        <div class="row m_image" id="skyimage">
             <section class="content content--c1">
                 <div class="col-sm-4">
                 <a href="#" class="tilter tilter--1">
@@ -457,7 +489,7 @@ margin-top: 20px;
                     <h5>ShowGilr</h5>
                 </div>
                 <div class="member-image">
-                    <img src="${pageContext.request.contextPath}/resource/paper.jpg" alt="Member">
+                    <img src="${pageContext.request.contextPath}/resource/data1.jpg" alt="Member">
                 </div>
                 <div class="more-info">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
@@ -475,7 +507,7 @@ margin-top: 20px;
                     <h5>ShowGilr</h5>
                 </div>
                 <div class="member-image">
-                    <img src="${pageContext.request.contextPath}/resource/paper.jpg" alt="Member">
+                    <img src="${pageContext.request.contextPath}/resource/data2.jpg" alt="Member">
                 </div>
                 <div class="more-info">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
@@ -492,7 +524,7 @@ margin-top: 20px;
                     <h5>ShowGilr</h5>
                 </div>
                 <div class="member-image">
-                    <img src="${pageContext.request.contextPath}/resource/paper.jpg" alt="Member">
+                    <img src="${pageContext.request.contextPath}/resource/data3.jpg" alt="Member">
                 </div>
                 <div class="more-info">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
@@ -504,8 +536,12 @@ margin-top: 20px;
         </div>
     </div>
     <!--方法介绍-->
-    <div class="row">
+    <div class="row fangfa">
+        <br />
+        <br />
         <h3>method</h3>
+        <br /><br />
+
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
 
     </div>
@@ -537,7 +573,7 @@ margin-top: 20px;
                         <li><a href="#">OPL Themes</a></li>
                     </ul>
                 </div>
-
+            </div>
 
             <%--</div><!--/.row -->--%>
         <%--</div><!--/.container-->--%>

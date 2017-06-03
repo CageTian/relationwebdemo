@@ -99,8 +99,9 @@ h4,h3{
     margin: 7px;
 }
 .flip-3d figure img {border-radius:50%; width: 100%; height: auto; }
-.flip-3d figure figcaption {border-radius:50%; position: absolute; width: 100%; height: 86px; top: 0;  transform: rotateY(.5turn) translateZ(1px);
-    background: rgba(255,255,255,0.9); text-align: center; padding-top: 45%; opacity: 0.6; transition: 1s .5s opacity; }
+.flip-3d figure figcaption {
+    border-radius:50%; position: absolute; width: 100%; height: 86px; top: 0;  transform: rotateY(.5turn) translateZ(1px);
+    background: rgba(255,255,255,0.9); text-align: center; padding-top: 45%;font-size: 20px; opacity: 0.6; transition: 1s .5s opacity; }
 .flip-3d:hover figure { transform: rotateY(.5turn);
 }
 .flip-3d:hover figure figcaption { opacity: 1; }
@@ -160,51 +161,9 @@ ul.nav-tabs.affix{
     top: 30px; /* Set the top position of pinned element */
 }
 </style>
-<body data-spy="scroll" data-target="#myScrollspy">
+<body>
 
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="touming">
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/jsps/welcome.jsp">SHIFU</a>
-            </div>
-            <div id="searchlocation">
-                <form class="navbar-form navbar-left" role="form" action="<c:url value='/ScholarServlet?'/>" method="get" id="searchForm">
-                    <input  type="hidden" name="method" value="findByAdvisee" />
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="advisee" placeholder="Search">
-                    </div>
-                    <button type="submit" value="search" class="btn btn-default">search</button>
-                </form>
-            </div>
-            <div class="collapse navbar-collapse">
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" id="Button1" value="signup" onclick="window.open('../user/regist.jsp')"><span class="glyphicon glyphicon-user" ></span> Sign up</a>
-                    </li>
-                    <li >
-                        <a href="#" data-toggle="modal" data-target="#mymodal-data" id="Button2" value="login" onclick="ShowDiv('MyDivLogin','fade')"><span class="glyphicon glyphicon-log-in" ></span> Log in</a>
-                    </li>
-                    <li>
-                        <a href="${pageContext.request.contextPath}/jsps/welcome.jsp"><span class="glyphicon glyphicon-home" ></span>Home</a>
-                    </li>
-                    <li>
-                        <a href=<c:url value='/ScholarServlet?method=ScholarFeedback&advisee_id=${scholar.advisee_id}'/>><span class="glyphicon glyphicon-pencil" ></span>Modify</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.nav-collapse -->
-        </div>
-        <!-- /.container -->
-    </div>
-</nav>
+<%@include file="/jsps/pager/header.jsp" %>
 <!-- 模态弹出窗内容 -->
 <div class="modal fade" id="mymodal-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -274,7 +233,9 @@ ul.nav-tabs.affix{
                 </div>
                 <div class="col-sm-8">
                     <div class="row">
-                        <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h></h3>
+                        <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h>
+                            <a href=<c:url value='/ScholarServlet?method=ScholarFeedback&advisee_id=${scholar.advisee_id}'/>><span class="glyphicon glyphicon-pencil" ></span>Modify</a>
+                        </h3>
                         <a style="display: none;" type="hidden" id="my_advisee_id">${requestScope.get("scholar").advisee_id}</a>
                     </div>
                     <div class="row"><h3>Advisor:<h id="advisor">${requestScope.get("scholar").advisor}</h></h3></div>
@@ -378,24 +339,18 @@ ul.nav-tabs.affix{
 
     <%--</div>--%>
     <div class="row">
-        <div class="col-xs-3" id="myScrollspy">
-            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
-                <li class="active"><a href="#section-1">Academic Family</a></li>
-                <li><a href="#section-2">Advisor</a></li>
-                <li><a href="#section-3">Collaboration</a></li>
-            </ul>
-        </div>
-        <div class="col-xs-9">
+
+        <div class="col-xs-10 col-sm-10 col-sm-offset-1">
             <div id="section-1">
                 <hr><h4>Academic Family Tree</h4><hr>
                 <div id="tree">
                 </div>
             </div>
-    </div>
+        </div>
 
-    <div class="row"  id="section-2">
+    <div class="row" >
 
-        <div class="col-sm-10 col-sm-offset-2" >
+        <div class="col-sm-10 col-sm-offset-1" >
             <hr><h4>Collaboration Times with Advisor</h4><hr>
             <div class="col-sm-4"></div>
             <div class="col-sm-8" id="teac_time">
@@ -414,8 +369,8 @@ ul.nav-tabs.affix{
         <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
         <%--<div class="col-sm-1"></div>--%>
     <%--</div>--%>
-    <div class="row" id="section-3">
-        <div class="col-sm-5 col-sm-offset-2" id="coworker">
+    <div class="row" >
+        <div class="col-sm-5 col-sm-offset-1" id="coworker">
             <hr><h4>Ego Network</h4><hr>
         </div>
         <div class="col-sm-5 web" >
