@@ -365,7 +365,7 @@ margin-top: 20px;
     <div class="sky-container">
         <div class="row m_image">
             <section class="content content--c1">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 <a href="#" class="tilter tilter--1">
                     <figure class="tilter__figure">
                         <img class="tilter__image" src="${pageContext.request.contextPath}/resource/1.jpg" alt="img01" />
@@ -380,7 +380,7 @@ margin-top: 20px;
                     </figure>
                 </a>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 <a href="#" class="tilter tilter--1">
                     <figure class="tilter__figure">
                         <img class="tilter__image" src="${pageContext.request.contextPath}/resource/2.jpg" alt="img02" />
@@ -395,7 +395,7 @@ margin-top: 20px;
                     </figure>
                 </a>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 <a href="#" class="tilter tilter--1">
                     <figure class="tilter__figure">
                         <img class="tilter__image" src="${pageContext.request.contextPath}/resource/15.jpg" alt="img02" />
@@ -409,6 +409,21 @@ margin-top: 20px;
                         </svg>
                     </figure>
                 </a>
+                </div>
+                <div class="col-sm-3">
+                    <a href="#" class="tilter tilter--1">
+                        <figure class="tilter__figure">
+                            <img class="tilter__image" src="${pageContext.request.contextPath}/resource/15.jpg" alt="img02" />
+                            <div class="tilter__deco tilter__deco--shine"><div></div></div>
+                            <figcaption class="tilter__caption">
+                                <h3 class="tilter__title">Walter Anderson</h3>
+                                <p class="tilter__description">Stockholm</p>
+                            </figcaption>
+                            <svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">
+                                <path d="M20.5,20.5h260v375h-260V20.5z" />
+                            </svg>
+                        </figure>
+                    </a>
                 </div>
             </section>
         </div>
