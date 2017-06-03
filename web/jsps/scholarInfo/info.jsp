@@ -160,7 +160,7 @@ ul.nav-tabs.affix{
     top: 30px; /* Set the top position of pinned element */
 }
 </style>
-<body data-spy="scroll" data-target="#myScrollspy">
+<body>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="touming">
     <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
@@ -274,9 +274,10 @@ ul.nav-tabs.affix{
                 </div>
                 <div class="col-sm-8">
                     <div class="row">
-                        <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h>;</h3>
+
+                        <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h></h3>
                     </div>
-                    <div class="row"><h3>Institution:<h id="advisor">${requestScope.get("scholar").advisor}</h>;</h3></div>
+                    <div class="row"><h3>Institution:<h id="advisor">${requestScope.get("scholar").advisor}</h></h3></div>
                     <div class="row">
                         <div class="lanren">
                         <div class="flip-3d">
@@ -377,24 +378,16 @@ ul.nav-tabs.affix{
 
     <%--</div>--%>
     <div class="row">
-        <div class="col-xs-3" id="myScrollspy">
-            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
-                <li class="active"><a href="#section-1">Academic Family</a></li>
-                <li><a href="#section-2">Advisor</a></li>
-                <li><a href="#section-3">Collaboration</a></li>
-            </ul>
-        </div>
-        <div class="col-xs-9">
-            <div id="section-1">
+
+        <div class="col-xs-10 col-sm-10 col-sm-offset-1">
                 <hr><h4>Academic Family Tree</h4><hr>
                 <div id="tree3">
-                </div>
             </div>
-    </div>
+        </div>
 
-    <div class="row"  id="section-2">
+    <div class="row" >
 
-        <div class="col-sm-10 col-sm-offset-2" >
+        <div class="col-sm-10 col-sm-offset-1" >
             <hr><h4>Collaboration Times with Advisor</h4><hr>
             <div class="col-sm-4"></div>
             <div class="col-sm-8" id="teac_time">
@@ -406,14 +399,7 @@ ul.nav-tabs.affix{
     </div>
 
 
-    <%--<div class="row">--%>
-        <%--<div class="col-sm-1"></div>--%>
-        <%--&lt;%&ndash;<div class="col-sm-10" id="tree3">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<hr><h4>Academic Family Tree</h4><hr>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-        <%--<div class="col-sm-1"></div>--%>
-    <%--</div>--%>
-    <div class="row" id="section-3">
+    <div class="row" >
         <div class="col-sm-5 col-sm-offset-2" id="coworker">
             <hr><h4>Ego Network</h4><hr>
         </div>
