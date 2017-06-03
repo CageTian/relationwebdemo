@@ -275,7 +275,8 @@ ul.nav-tabs.affix{
                 <div class="col-sm-8">
                     <div class="row">
                         <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h></h3>
-                        <a style="display: none;" type="hidden" id="my_advisee_id">${requestScope.get("scholar").advisee_id}</a>
+                        <a style="display: none;" type="hidden" id="my_advisee_id">${requestScope.get("scholar").advisee_id}</a><a href=<c:url value='/ScholarServlet?method=ScholarFeedback&bid=${scholar.bid}'/>><span class="glyphicon glyphicon-pencil" ></span>Modify</a>
+
                     </div>
                     <div class="row"><h3>Advisor:<h id="advisor">${requestScope.get("scholar").advisor}</h></h3></div>
                     <div class="row">
@@ -378,22 +379,15 @@ ul.nav-tabs.affix{
 
     <%--</div>--%>
     <div class="row">
-        <div class="col-xs-3" id="myScrollspy">
-            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
-                <li class="active"><a href="#section-1">Academic Family</a></li>
-                <li><a href="#section-2">Advisor</a></li>
-                <li><a href="#section-3">Collaboration</a></li>
-            </ul>
-        </div>
-        <div class="col-xs-9">
-            <div id="section-1">
+
+        <div class="col-xs-20 col-sm-10 col-sm-offset-1">
                 <hr><h4>Academic Family Tree</h4><hr>
                 <div id="tree">
                 </div>
-            </div>
+
     </div>
 
-    <div class="row"  id="section-2">
+    <div class="row" >
 
         <div class="col-sm-10 col-sm-offset-2" >
             <hr><h4>Collaboration Times with Advisor</h4><hr>
@@ -414,7 +408,7 @@ ul.nav-tabs.affix{
         <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
         <%--<div class="col-sm-1"></div>--%>
     <%--</div>--%>
-    <div class="row" id="section-3">
+    <div class="row">
         <div class="col-sm-5 col-sm-offset-2" id="coworker">
             <hr><h4>Ego Network</h4><hr>
         </div>
