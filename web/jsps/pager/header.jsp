@@ -16,8 +16,8 @@
         if("${sessionScope.sessionUser.username}") {
             username = "${sessionScope.sessionUser.username}";
             $("#showWord").text(username);
-            $("#Button2").text("");
-            $("#loginspan").text("");
+//            $("#Button2").text("");
+//            $("#loginspan").text("");
 
         }
         $("#username").val(username);
