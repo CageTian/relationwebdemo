@@ -1,19 +1,9 @@
 $(function() {
-	/*
-	 * 1. 让登录按钮在得到和失去焦点时切换图片
-	 */
-	// $("#submit").hover(
-	// 	function() {
-	// 		$("#submit").attr("src", "/images/login2.jpg");
-	// 	},
-	// 	function() {
-	// 		$("#submit").attr("src", "/images/login1.jpg");
-	// 	}
-	// );
-	//
-	/*
-	 * 2. 给注册按钮添加submit()事件，完成表单校验
-	 */
+
+    $(".errorClass").each(function() {
+        showError($(this));//遍历每个元素，使用每个元素来调用showError方法
+    });
+
 	$("#submit").submit(function(){
 		$("#msg").text("");
 		var bool = true;
@@ -41,6 +31,24 @@ $(function() {
 		var inputName = $(this).attr("name");
 		invokeValidateFunction(inputName);
 	})
+
+	/*
+	 * 5. 表单提交时进行校验
+	 */
+    $("#loginForm").submit(function() {
+        var bool = true;//表示校验通过
+        if(!validateUsername()) {
+            bool = false;
+        }
+        if(!validatePassword()) {
+            bool = false;
+        }
+        if(!validateVerifyCode()) {
+            bool = false;
+        }
+
+        return bool;
+    });
 });
 
 /*
@@ -52,7 +60,17 @@ function invokeValidateFunction(inputName) {
 	var functionName = "validate" + inputName;
 	return eval(functionName + "()");	
 }
-
+/*
+ * 判断当前元素是否存在内容，如果存在显示，不页面不显示！
+ */
+function showError(ele) {
+    var text = ele.text();//获取元素的内容
+    if(!text) {//如果没有内容
+        ele.css("display", "none");//隐藏元素
+    } else {//如果有内容
+        ele.css("display", "");//显示元素
+    }
+}
 /*
  * 校验登录名
  */

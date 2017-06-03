@@ -77,7 +77,7 @@
       <div class="panel-body">
         <form class="form-horizontal" role="form" target="_top" action="<c:url value='/LoginServlet'/>" method="post" id="loginForm">
           <input type="hidden" name="method" value="login" />
-          <label class="error text-danger" id="msg">${msg }</label>
+          <label class="errorClass text-danger" id="msg">${msg }</label>
           <div class="form-group">
             <lable class="col-sm-2 control-lable" for="username"></lable>
             <div class="col-sm-8">
@@ -85,7 +85,7 @@
                     <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </span>
                     <input class="form-control input" placeholder="username" type="text" name="username" id="username" value="${user.username }"/>
                 </div>
-                <label id="usernameError" class="error text-danger"></label>
+                <label id="usernameError" class="errorClass text-danger"></label>
             </div>
           </div>
           <div class="form-group">
@@ -95,14 +95,14 @@
                     <span class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span></span>
                     <input class="form-control input" placeholder="password" type="password" name="password" id="password" value="${user.password }"/>
                 </div>
-              <label id="passwordError" class="error text-danger"></label>
+              <label id="passwordError" class="errorClass text-danger"></label>
             </div>
           </div>
           <div class="form-group">
             <lable class="col-sm-2 control-lable" for="verifyCode"></lable>
             <div class="col-sm-4">
               <input class="form-control input" type="text" placeholder="captcha" name="verifyCode" id="verifyCode" value="${user.verifyCode }"/>
-              <label id="verifyCodeError" class="error text-danger"></label></label>
+              <label id="verifyCodeError" class="errorClass text-danger"></label></label>
             </div>
             <div class="col-sm-4">
               <div id="divVerifyCode">
@@ -113,7 +113,7 @@
           </div>
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
-                <input type="submit" class="btn btn-group-justified btn-primary button button-glow button-border button-rounded button-primary" value="Sign In" id="submit"/>
+                <input type="submit" class="btn btn-group-justified btn-primary button button-glow button-border button-rounded button-primary" value="Sign In" id="submitBtn"/>
             </div>
         </form>
       </div>
