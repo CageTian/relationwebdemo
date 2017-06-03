@@ -81,9 +81,11 @@ public class LoginServlet extends BaseServlet {
      * @throws ServletException
      * @throws IOException
      */
-    public String quit(HttpServletRequest req, HttpServletResponse resp)
+    public String logout(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         req.getSession().invalidate();
+        RequestDispatcher requestDispatcher=req.getRequestDispatcher("/jsps/welcome.jsp");
+        requestDispatcher.forward(req,resp);
         return "r:/jsps/user/login.jsp";
     }
 
@@ -161,7 +163,7 @@ public class LoginServlet extends BaseServlet {
                 Cookie cookie = new Cookie("username", loginname);
                 cookie.setMaxAge(60 * 60 * 24 * 10);//保存10天
                 resp.addCookie(cookie);
-                //System.out.println("loginsccuess");
+                System.out.println("loginsccuess");
                 RequestDispatcher requestDispatcher=req.getRequestDispatcher("/jsps/welcome.jsp");
                 requestDispatcher.forward(req,resp);
                 return "r:/index.jsp";//重定向到主页
@@ -174,6 +176,35 @@ public class LoginServlet extends BaseServlet {
      */
     private Map<String,String> validateLogin(User formUser, HttpSession session) {
         Map<String,String> errors = new HashMap<String,String>();
+        /*
+		 * 1. 校验登录名
+		 */
+        String username = formUser.getUsername();
+        if(username == null || username.trim().isEmpty()) {
+            errors.put("username", "用户名不能为空！");
+        } else if(username.length() < 3 || username.length() > 20) {
+            errors.put("username", "用户名长度必须在3~20之间！");
+        }
+
+		/*
+		 * 2. 校验登录密码
+		 */
+        String password = formUser.getPassword();
+        if(password == null || password.trim().isEmpty()) {
+            errors.put("password", "密码不能为空！");
+        } else if(password.length() < 3 || password.length() > 20) {
+            errors.put("password", "密码长度必须在3~20之间！");
+        }
+        /*
+		 * 3. 验证码校验
+		 */
+        String verifyCode = formUser.getVerifyCode();
+        String vcode = (String) session.getAttribute("verCode");
+        if(verifyCode == null || verifyCode.trim().isEmpty()) {
+            errors.put("verifyCode", "验证码不能为空！");
+        } else if(!verifyCode.equalsIgnoreCase(vcode)) {
+            errors.put("verifyCode", "验证码错误！");
+        }
         return errors;
     }
 

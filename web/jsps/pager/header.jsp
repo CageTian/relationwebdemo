@@ -16,8 +16,6 @@
         if("${sessionScope.sessionUser.username}") {
             username = "${sessionScope.sessionUser.username}";
             $("#showWord").text(username);
-            $("#Button2").text("");
-            $("#loginspan").text("");
 
         }
         $("#username").val(username);
@@ -49,10 +47,18 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="#" id="Button1" value="signup" onclick="window.open('${pageContext.request.contextPath}/jsps/user/regist.jsp')"><span class="glyphicon glyphicon-user" ></span> <t id="showWord">Sign up</t></a>
+                        <a href="#" id="Button1" value="signup" onclick="window.open('${pageContext.request.contextPath}/jsps/user/regist.jsp')"><span class="glyphicon glyphicon-user" ></span>
+                            <c:if test="${empty sessionScope.sessionUser.username}">Sign Up</c:if><c:if test="${!empty sessionScope.sessionUser.username}">${sessionScope.sessionUser.username}</c:if></a>
                     </li>
                     <li >
-                        <a href="#" data-toggle="modal" data-target="#mymodal-data" id="Button2" value="login" onclick="ShowDiv('MyDivLogin','fade')"><span class="glyphicon glyphicon-log-in" id="loginspan" ></span> Log in</a>
+                        <c:if test="${empty sessionScope.sessionUser.username}">
+                        <a href="#" data-toggle="modal" data-target="#mymodal-data" id="Button2" value="login" onclick="ShowDiv('MyDivLogin','fade')"><span class="glyphicon glyphicon-log-in" id="loginspan" >
+                        </span>Log in</a>
+                        </c:if>
+                        <c:if test="${!empty sessionScope.sessionUser.username}">
+                            <a href="<c:url value='/LoginServlet?method=logout'/>"><span class="glyphicon glyphicon-log-in" id="loginspan" >
+                            </span> Log Out</a>
+                        </c:if>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/jsps/welcome.jsp"><span class="glyphicon glyphicon-home" ></span>Home</a>
