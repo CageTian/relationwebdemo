@@ -51,6 +51,12 @@ body{
 h4,h3{
     color: #cecece;
 }
+.m_title{
+    background-image: url(${pageContext.request.contextPath}/resource/background.jpg);
+    opacity: 0.7;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
 .ac-tooltip{
     position:absolute;
     visibility:hidden;
@@ -160,69 +166,17 @@ ul.nav-tabs li:last-child a{
 ul.nav-tabs.affix{
     top: 30px; /* Set the top position of pinned element */
 }
+    .zhibiao{
+        display: table;
+    }
+    .zhibiao_cotent{
+        display: table-cell;
+        vertical-align:middle;
+    }
 </style>
 <body>
 
 <%@include file="/jsps/pager/header.jsp" %>
-<!-- 模态弹出窗内容 -->
-<div class="modal fade" id="mymodal-data" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title"><span class="loginTop">Sign in</span></h4>
-                <div class="text-muted">Need an account? Then please <a href="regist.jsp" target="_self">sign up</a>.</div>
-            </div>
-            <div class="modal-body">
-                <form class="form-horizontal" role="form" target="_top" action="<c:url value='/LoginServlet'/>" method="post" id="loginForm">
-                    <input type="hidden" name="method" value="login" />
-                    <div class="form-group">
-                        <label class="error" id="msg">${msg }</label>
-                    </div>
-                    <div class="form-group">
-                        <lable class="col-sm-2"></lable>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span> </span>
-                                <input class="input form-control" placeholder="username" type="text" name="username" id="username" value="${user.username }"/>
-                            </div>
-                            <label id="usernameError" class="error text-danger"></label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <lable class="col-sm-2"></lable>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span></span>
-                                <input class="input form-control" placeholder="password" type="password" name="password" id="password" value="${user.password }"/>
-                            </div>
-                            <label id="passwordError" class="error text-danger"></label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <lable class="col-sm-2"></lable>
-                        <div class="col-sm-5">
-                            <input class="input yzm form-control" placeholder="captcha" type="text" name="verifyCode" id="verifyCode" value="${user.verifyCode }"/>
-                            <label id="verifyCodeError" class="error text-danger"></label></label>
-                        </div>
-                        <div class="col-sm-3">
-                            <div id="divVerifyCode">
-                                <img id="imgVerifyCode" src="<c:url value='/VerifyCodeServlet'/>" onclick="changeVerify()"/>
-                            </div>
-                            <label class="changeCaptcha"><a href="javascript:_changeVerify()">Generate new one</a></label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-8">
-                            <input type="submit" class="loginBtn btn btn-group-justified button button-glow button-border button-rounded button-primary" value="Sign In" id="submit"/>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="container" style="margin-top:50px;">
     <div class="row">
@@ -233,12 +187,12 @@ ul.nav-tabs.affix{
                 </div>
                 <div class="col-sm-8">
                     <div class="row">
-                        <h3>Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h>
-                            <a href=<c:url value='/ScholarServlet?method=ScholarFeedback&advisee_id=${scholar.advisee_id}'/>><span class="glyphicon glyphicon-pencil" ></span>Modify</a>
+                        <h3 class="glyphicon glyphicon-user">Name:<h id="advisee1">${requestScope.get("scholar").advisee}</h>
+                            <a href=<c:url value='/ScholarServlet?method=ScholarFeedback&advisee_id=${scholar.advisee_id}'/>><span class="glyphicon glyphicon-pencil" ></span></a>
                         </h3>
                         <a style="display: none;" type="hidden" id="my_advisee_id">${requestScope.get("scholar").advisee_id}</a>
                     </div>
-                    <div class="row"><h3>Advisor:<h id="advisor">${requestScope.get("scholar").advisor}</h></h3></div>
+                    <div class="row"><h3 class="glyphicon glyphicon-book">Advisor:<h id="advisor">${requestScope.get("scholar").advisor}</h></h3></div>
                     <div class="row">
                         <div class="lanren">
                         <div class="flip-3d">
@@ -267,92 +221,25 @@ ul.nav-tabs.affix{
         </div>
     </div>
 
-    <%--<div class="row">--%>
-        <%--<div class="col-sm-10 col-sm-offset-1">--%>
-            <%--<ul id="myTab" class="nav nav-tabs">--%>
-                <%--<li class="active"><a href="#Relationtree" data-toggle="tab" onclick="renderChart(1)">--%>
-                    <%--Academic Family Tree</a>--%>
-                <%--</li>--%>
-                <%--<li><a href="#advisor2" data-toggle="tab">Collaboration Times with Advisor</a></li>--%>
-                <%--<li><a href="#collaborator" data-toggle="tab" onclick="renderChart(3)">Collaboration Network</a></li>--%>
-
-            <%--</ul>--%>
-        <%--</div>--%>
-        <%--<div id="myTabContent" class="tab-content col-sm-10 col-sm-offset-1">--%>
-            <%--<div class="tab-pane fade in active" id="Relationtree">--%>
-                <%--<div  id="tree3">--%>
-                <%--</div>--%>
-
-            <%--</div>--%>
-            <%--<div class="tab-pane fade" id="advisor2">--%>
-                <%--<div class="col-sm-4">      </div>--%>
-                <%--<div class="col-sm-8" id="teac_time">--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="tab-pane fade" id="collaborator">--%>
-                <%--<div class="col-sm-6 web" >--%>
-                    <%--<hr><h4>Collaboration Network</h4><hr>--%>
-                <%--</div>--%>
-                <%--<div class="col-sm-6" id="coworker">--%>
-                    <%--<hr><h4>coworker</h4><hr>--%>
-
-                <%--</div>--%>
-            <%--</div>--%>
-
-        <%--</div>--%>
-
-        <%--<script>--%>
-            <%--$('#myTab a').click(function (e) {--%>
-                <%--e.preventDefault();--%>
-                <%--$(this).tab('show');--%>
-            <%--})--%>
-
-
-        <%--</script>--%>
-        <%--<script type="text/javascript">--%>
-            <%--/*--%>
-            <%--$(document).ready(function()--%>
-            <%--{--%>
-                <%--var width=$("#tree3").width()+"px";--%>
-                <%--alert(width);--%>
-                <%--$('#myTab a:eq(0)').click(function(){--%>
-                    <%--$("#tree3").animate({width:"300px"},10);--%>
-                    <%--$("#tree3").animate({width:"945px"},10);--%>
-                <%--});--%>
-            <%--});*/--%>
-            <%--function renderChart(index){--%>
-                <%--if(index == 1){--%>
-                     <%--alert(1);--%>
-                    <%--chart.clean();--%>
-                    <%--chart.render();--%>
-
-
-                <%--}--%>
-
-                <%--if(index == 3){--%>
-
-                    <%--chart3.clear();--%>
-                    <%--chart3.repaint();--%>
-                <%--}--%>
-            <%--}--%>
-        <%--</script>--%>
-
-    <%--</div>--%>
     <div class="row">
 
         <div class="col-xs-10 col-sm-10 col-sm-offset-1">
-            <div id="section-1">
-                <hr><h4>Academic Family Tree</h4><hr>
+                <div class="m_title"><h4>Academic Family Tree</h4></div>
                 <div id="tree">
                 </div>
-            </div>
         </div>
 
     <div class="row" >
 
         <div class="col-sm-10 col-sm-offset-1" >
-            <hr><h4>Collaboration Times with Advisor</h4><hr>
-            <div class="col-sm-4"></div>
+            <div class="m_title"><h4>Collaboration Times with Advisor</h4></div>
+            <div class="col-sm-4 zhibiao">
+                <div class="zhibiao_cotent">
+                <h4 class=" 	glyphicon glyphicon-tag">Accuracy</h4><br/>
+                <h4 class=" 	glyphicon glyphicon-tag">Year</h4><br/>
+                <h4 class=" 	glyphicon glyphicon-tag">Times</h4>
+                </div>
+            </div>
             <div class="col-sm-8" id="teac_time">
 
 
@@ -360,21 +247,12 @@ ul.nav-tabs.affix{
         </div>
 
     </div>
-
-
-    <%--<div class="row">--%>
-        <%--<div class="col-sm-1"></div>--%>
-        <%--&lt;%&ndash;<div class="col-sm-10" id="tree3">&ndash;%&gt;--%>
-            <%--&lt;%&ndash;<hr><h4>Academic Family Tree</h4><hr>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-        <%--<div class="col-sm-1"></div>--%>
-    <%--</div>--%>
     <div class="row" >
         <div class="col-sm-5 col-sm-offset-1" id="coworker">
-            <hr><h4>Ego Network</h4><hr>
+            <div class="m_title"><h4>Ego Network</h4></div>
         </div>
         <div class="col-sm-5 web" >
-            <hr><h4>Collaboration Network</h4><hr>
+            <div class="m_title"><h4>Collaboration Network</h4></div>
         </div>
     </div>
 
