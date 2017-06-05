@@ -318,7 +318,7 @@
     }
 }
 
-        .pingtai p{
+        .pingtai p,.fangfa p{
 
             font-size: large;
         }
@@ -354,13 +354,11 @@ margin-top: 20px;
     {
         var skyimage =document.getElementById("skyimage");
         skyimage.style.display="block";
-        alert("show");
     }
     function fadesky()
     {
         var skyimage=document.getElementById("skyimage");
         skyimage.style.display="none";
-        alert("fade");
     }
 </script>
 <div id="canvas3d" >
@@ -397,13 +395,13 @@ margin-top: 20px;
     <div class="sky-container">
         <div class="row m_image" id="skyimage">
             <section class="content content--c1">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 <a href="#" class="tilter tilter--1">
                     <figure class="tilter__figure">
-                        <img class="tilter__image" src="${pageContext.request.contextPath}/resource/1.jpg" alt="img01" />
+                        <img class="tilter__image" src="${pageContext.request.contextPath}/resource/JiayingLiu.jpg" alt="img01" />
                         <div class="tilter__deco tilter__deco--shine"><div></div></div>
                         <figcaption class="tilter__caption">
-                            <h3 class="tilter__title">Tanya Bondesta</h3>
+                            <h3 class="tilter__title">Jiaying Liu</h3>
                             <p class="tilter__description">Toronto</p>
                         </figcaption>
                         <svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">
@@ -412,13 +410,13 @@ margin-top: 20px;
                     </figure>
                 </a>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 <a href="#" class="tilter tilter--1">
                     <figure class="tilter__figure">
-                        <img class="tilter__image" src="${pageContext.request.contextPath}/resource/2.jpg" alt="img02" />
+                        <img class="tilter__image" src="${pageContext.request.contextPath}/resource/KeHou.jpg" alt="img02" />
                         <div class="tilter__deco tilter__deco--shine"><div></div></div>
                         <figcaption class="tilter__caption">
-                            <h3 class="tilter__title">Walter Anderson</h3>
+                            <h3 class="tilter__title">Ke Hou</h3>
                             <p class="tilter__description">Stockholm</p>
                         </figcaption>
                         <svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">
@@ -427,13 +425,13 @@ margin-top: 20px;
                     </figure>
                 </a>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                 <a href="#" class="tilter tilter--1">
                     <figure class="tilter__figure">
                         <img class="tilter__image" src="${pageContext.request.contextPath}/resource/15.jpg" alt="img02" />
                         <div class="tilter__deco tilter__deco--shine"><div></div></div>
                         <figcaption class="tilter__caption">
-                            <h3 class="tilter__title">Walter Anderson</h3>
+                            <h3 class="tilter__title">Kaiqi Tian</h3>
                             <p class="tilter__description">Stockholm</p>
                         </figcaption>
                         <svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">
@@ -441,6 +439,21 @@ margin-top: 20px;
                         </svg>
                     </figure>
                 </a>
+                </div>
+                <div class="col-sm-3">
+                    <a href="#" class="tilter tilter--1">
+                        <figure class="tilter__figure">
+                            <img class="tilter__image" src="${pageContext.request.contextPath}/resource/15.jpg" alt="img02" />
+                            <div class="tilter__deco tilter__deco--shine"><div></div></div>
+                            <figcaption class="tilter__caption">
+                                <h3 class="tilter__title">Xinyu zhou</h3>
+                                <p class="tilter__description">Stockholm</p>
+                            </figcaption>
+                            <svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">
+                                <path d="M20.5,20.5h260v375h-260V20.5z" />
+                            </svg>
+                        </figure>
+                    </a>
                 </div>
             </section>
         </div>
@@ -539,10 +552,10 @@ margin-top: 20px;
     <div class="row fangfa">
         <br />
         <br />
-        <h3>method</h3>
+        <h2>method</h2>
         <br /><br />
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+        <p>This dataset is collected from DBLP dataset. From this dataset, We can find out that the two scholars are the possibility of the relationship between advisors and advisees, the year when they start cooperation, the year of cooperation and the corresponding number of cooperation. </p>
 
     </div>
 

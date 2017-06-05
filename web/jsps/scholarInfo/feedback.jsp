@@ -81,7 +81,7 @@
             <div class="row">
                 <label class="col-sm-3 control-label">content:</label>
                 <div class="col-sm-8">
-                    <input style="height: 100px;" type="text" class="form-control" placeholder="content" name="content">
+                    <textarea rows="3" type="text" class="form-control" placeholder="content" name="content"></textarea>
                 </div>
             </div>
 

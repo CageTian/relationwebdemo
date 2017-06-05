@@ -235,9 +235,10 @@ ul.nav-tabs.affix{
             <div class="m_title"><h4>Collaboration Times with Advisor</h4></div>
             <div class="col-sm-4 zhibiao">
                 <div class="zhibiao_cotent">
-                <h4 class=" 	glyphicon glyphicon-tag">Accuracy</h4><br/>
-                <h4 class=" 	glyphicon glyphicon-tag">Year</h4><br/>
-                <h4 class=" 	glyphicon glyphicon-tag">Times</h4>
+                    <br/><br/><br/><br/>
+                <h4 class=" 	glyphicon glyphicon-tag">Accuracy:${scholar.possibility}</h4><br/><br/>
+                <h4 class=" 	glyphicon glyphicon-tag">Year:${scholar.start_year}</h4><br/><br/>
+                <h4 class=" 	glyphicon glyphicon-tag">Times:${scholar.advisor_cop_times}</h4>
                 </div>
             </div>
             <div class="col-sm-8" id="teac_time">

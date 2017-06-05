@@ -8,7 +8,16 @@ public class Scholar {
     private String advisee;
     private String advisor;
     private double possibility;
-    private int advisee_cop_times;
+
+    public int getAdvisor_cop_times() {
+        return advisor_cop_times;
+    }
+
+    public void setAdvisor_cop_times(int advisor_cop_times) {
+        this.advisor_cop_times = advisor_cop_times;
+    }
+
+    private int advisor_cop_times;
     private int start_year;
     private int paper_start_year;
     private int paper_num;
@@ -66,13 +75,6 @@ public class Scholar {
         this.possibility = possibility;
     }
 
-    public int getAdvisee_cop_times() {
-        return advisee_cop_times;
-    }
-
-    public void setAdvisee_cop_times(int advisee_cop_times) {
-        this.advisee_cop_times = advisee_cop_times;
-    }
 
     public int getStart_year() {
         return start_year;
@@ -121,7 +123,7 @@ public class Scholar {
                 ", advisee='" + advisee + '\'' +
                 ", advisor='" + advisor + '\'' +
                 ", possibility=" + possibility +
-                ", advisee_cop_times=" + advisee_cop_times +
+                ", advisee_cop_times="  +
                 ", start_year=" + start_year +
                 ", paper_start_year=" + paper_start_year +
                 ", paper_num=" + paper_num +
