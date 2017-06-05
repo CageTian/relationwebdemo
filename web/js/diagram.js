@@ -150,14 +150,14 @@ $(function() {
                 frame = Frame.sort(frame, 'release');
                 chart.source(frame, {
                     year: {
-                        alias: 'year',
+                        alias: 'YEAR',
                         range: [0, 1],
                         fill: '#cecece', // 文本的颜色
                         fontSize: '12', // 文本大小
                         fontWeight: 'normal' // 文本粗细
                     },
                     number: {
-                        alias: 'times',
+                        alias: 'TIMES',
                         fill: '#cecece', // 文本的颜色
                         fontSize: '12', // 文本大小
                         fontWeight: 'normal' // 文本粗细

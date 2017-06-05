@@ -108,7 +108,7 @@
                                     <span>advisor: <a href="#" class="btn btn-sm">${scholar.advisor}</a></span>
                                 </div>
                                 <div class="r_beg text-muted">
-                                    <span>beginYear:${scholar.start_year}</span>
+                                    <span>BeginYear:${scholar.start_year}</span>
                                 </div>
                             </div>
                             <div class="col-sm-2">

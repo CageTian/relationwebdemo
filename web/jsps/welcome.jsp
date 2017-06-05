@@ -333,6 +333,8 @@
 
             background-color: #373f48;
 margin-top: 20px;
+            padding-left: 100px;
+            color: #e0e0e0;
         position:absolute;
             width: 100%;
 
@@ -393,102 +395,93 @@ margin-top: 20px;
     </div>
 
     <div class="sky-container">
-        <div class="row m_image" id="skyimage">
-            <section class="content content--c1">
-                <div class="col-sm-3">
-                <a href="#" class="tilter tilter--1">
-                    <figure class="tilter__figure">
-                        <img class="tilter__image" src="${pageContext.request.contextPath}/resource/JiayingLiu.jpg" alt="img01" />
-                        <div class="tilter__deco tilter__deco--shine"><div></div></div>
-                        <figcaption class="tilter__caption">
-                            <h3 class="tilter__title">Jiaying Liu</h3>
-                            <p class="tilter__description">Toronto</p>
-                        </figcaption>
-                        <svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">
-                            <path d="M20.5,20.5h260v375h-260V20.5z" />
-                        </svg>
-                    </figure>
-                </a>
-                </div>
-                <div class="col-sm-3">
-                <a href="#" class="tilter tilter--1">
-                    <figure class="tilter__figure">
-                        <img class="tilter__image" src="${pageContext.request.contextPath}/resource/KeHou.jpg" alt="img02" />
-                        <div class="tilter__deco tilter__deco--shine"><div></div></div>
-                        <figcaption class="tilter__caption">
-                            <h3 class="tilter__title">Ke Hou</h3>
-                            <p class="tilter__description">Stockholm</p>
-                        </figcaption>
-                        <svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">
-                            <path d="M20.5,20.5h260v375h-260V20.5z" />
-                        </svg>
-                    </figure>
-                </a>
-                </div>
-                <div class="col-sm-3">
-                <a href="#" class="tilter tilter--1">
-                    <figure class="tilter__figure">
-                        <img class="tilter__image" src="${pageContext.request.contextPath}/resource/15.jpg" alt="img02" />
-                        <div class="tilter__deco tilter__deco--shine"><div></div></div>
-                        <figcaption class="tilter__caption">
-                            <h3 class="tilter__title">Kaiqi Tian</h3>
-                            <p class="tilter__description">Stockholm</p>
-                        </figcaption>
-                        <svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">
-                            <path d="M20.5,20.5h260v375h-260V20.5z" />
-                        </svg>
-                    </figure>
-                </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="#" class="tilter tilter--1">
-                        <figure class="tilter__figure">
-                            <img class="tilter__image" src="${pageContext.request.contextPath}/resource/15.jpg" alt="img02" />
-                            <div class="tilter__deco tilter__deco--shine"><div></div></div>
-                            <figcaption class="tilter__caption">
-                                <h3 class="tilter__title">Xinyu zhou</h3>
-                                <p class="tilter__description">Stockholm</p>
-                            </figcaption>
-                            <svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">
-                                <path d="M20.5,20.5h260v375h-260V20.5z" />
-                            </svg>
-                        </figure>
-                    </a>
-                </div>
-            </section>
-        </div>
-        <%--<div class="text-right sky-container__left">--%>
-            <%--<h2 class="portfolio">--%>
-                <%--ADVISOR-ADVISEE--%>
-            <%--</h2>--%>
-            <%--<h2 class="resurrection">--%>
-                <%--COWORKER--%>
-                <%--<a href="${pageContext.request.contextPath}/resource/test.zip">Download the data!</a>--%>
+        <%--<div class="row m_image" id="skyimage">--%>
+            <%--<section class="content content--c1">--%>
+                <%--<div class="col-sm-3">--%>
+                <%--<a href="#" class="tilter tilter--1">--%>
+                    <%--<figure class="tilter__figure">--%>
+                        <%--<img class="tilter__image" src="${pageContext.request.contextPath}/resource/JiayingLiu.jpg" alt="img01" />--%>
+                        <%--<div class="tilter__deco tilter__deco--shine"><div></div></div>--%>
+                        <%--<figcaption class="tilter__caption">--%>
+                            <%--<h3 class="tilter__title">Jiaying Liu</h3>--%>
+                            <%--<p class="tilter__description">Toronto</p>--%>
+                        <%--</figcaption>--%>
+                        <%--<svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">--%>
+                            <%--<path d="M20.5,20.5h260v375h-260V20.5z" />--%>
+                        <%--</svg>--%>
+                    <%--</figure>--%>
+                <%--</a>--%>
+                <%--</div>--%>
+                <%--<div class="col-sm-3">--%>
+                <%--<a href="#" class="tilter tilter--1">--%>
+                    <%--<figure class="tilter__figure">--%>
+                        <%--<img class="tilter__image" src="${pageContext.request.contextPath}/resource/KeHou.jpg" alt="img02" />--%>
+                        <%--<div class="tilter__deco tilter__deco--shine"><div></div></div>--%>
+                        <%--<figcaption class="tilter__caption">--%>
+                            <%--<h3 class="tilter__title">Ke Hou</h3>--%>
+                            <%--<p class="tilter__description">Stockholm</p>--%>
+                        <%--</figcaption>--%>
+                        <%--<svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">--%>
+                            <%--<path d="M20.5,20.5h260v375h-260V20.5z" />--%>
+                        <%--</svg>--%>
+                    <%--</figure>--%>
+                <%--</a>--%>
+                <%--</div>--%>
+                <%--<div class="col-sm-3">--%>
+                <%--<a href="#" class="tilter tilter--1">--%>
+                    <%--<figure class="tilter__figure">--%>
+                        <%--<img class="tilter__image" src="${pageContext.request.contextPath}/resource/15.jpg" alt="img02" />--%>
+                        <%--<div class="tilter__deco tilter__deco--shine"><div></div></div>--%>
+                        <%--<figcaption class="tilter__caption">--%>
+                            <%--<h3 class="tilter__title">Kaiqi Tian</h3>--%>
+                            <%--<p class="tilter__description">Stockholm</p>--%>
+                        <%--</figcaption>--%>
+                        <%--<svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">--%>
+                            <%--<path d="M20.5,20.5h260v375h-260V20.5z" />--%>
+                        <%--</svg>--%>
+                    <%--</figure>--%>
+                <%--</a>--%>
+                <%--</div>--%>
+                <%--<div class="col-sm-3">--%>
+                    <%--<a href="#" class="tilter tilter--1">--%>
+                        <%--<figure class="tilter__figure">--%>
+                            <%--<img class="tilter__image" src="${pageContext.request.contextPath}/resource/15.jpg" alt="img02" />--%>
+                            <%--<div class="tilter__deco tilter__deco--shine"><div></div></div>--%>
+                            <%--<figcaption class="tilter__caption">--%>
+                                <%--<h3 class="tilter__title">Xinyu zhou</h3>--%>
+                                <%--<p class="tilter__description">Stockholm</p>--%>
+                            <%--</figcaption>--%>
+                            <%--<svg class="tilter__deco tilter__deco--lines" viewBox="0 0 300 415">--%>
+                                <%--<path d="M20.5,20.5h260v375h-260V20.5z" />--%>
+                            <%--</svg>--%>
+                        <%--</figure>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+            <%--</section>--%>
+        <%--</div>--%>
+        <div class="text-right sky-container__left">
+            <h2 class="portfolio">
+                The Alpha Lab
+            </h2>
+            </div>
+        <div class="text-left sky-container__right">
+            <p style="padding-left: 100px"><br/>We are from The Alpha Lab. Our goal is to create innovation through conducting interdisciplinary, application-driven academic research. We are interested in a broad spectrum of cutting-edge research topics including social computing, computational social science, big data, and mobile social networks.</p>
 
-            <%--</h2>--%>
-        <%--</div>--%>
-        <%--<div class="text-left sky-container__right">--%>
-            <%--<!--h2 class="08">--%>
-                <%--03--%>
-            <%--</h2>--%>
-            <%--<h2 class="thirty-one">--%>
-                <%--31--%>
-            <%--</h2>--%>
-            <%--<h2 class="2016">--%>
-                <%--2017--%>
-            <%--</h2-->--%>
-        <%--</div>--%>
+        </div>
     </div>
 </div>
 <div class="container-fluid next">
 
     <!--平台介绍-->
     <div class="pingtai row">
-        <div class="col-sm-8 col-sm-offset-4 col-md-8 col-md-offset-4">
-            <br/><br/><br/><br/>
-            <h1>SHIFU</h1>
-            <br/><br/><br/><br/>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+        <div class="col-sm-8 col-sm-offset-4 col-md-8 col-md-offset-4 text-left">
+            <br/>
+            <h2 class="text-center">SHIFU</h2>
+            <p>Advisor-advisee Relationships Visualization System Based on Scholarly Big Data</p>
+            <p>Shifu is an online platform developed for the purpose of facilitating research for those who are interested in the areas regarding social and academic networks. Its main function is to find the scholar's advisor.Particularly, it includes:
+            <p>-The scholar's details; the identification of the advisor;the visualization of some relevant data.</p>
+            <p>-Introduction to xgboost classification algorithm. This algorithm is used to determine the probability that two scholars are advisor-advisee relationship.</p>
+            <p>-A collection of datasets from DBLP dataset. We use this data set to extract features and to identify advisor-advisee relationships.</p>
         </div>
     </div>
     <br/>
@@ -498,14 +491,14 @@ margin-top: 20px;
         <div class="col-sm-4 col-md-4">
             <div class="single-member effect-4">
                 <div class="member-info">
-                    <h3>Sophia</h3>
-                    <h5>ShowGilr</h5>
+                    <h3>Advisee-advisor</h3>
+                    <h5>Relationship</h5>
                 </div>
                 <div class="member-image">
                     <img src="${pageContext.request.contextPath}/resource/data1.jpg" alt="Member">
                 </div>
                 <div class="more-info">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+                    <p>This dataset is collected from DBLP dataset. From this dataset, We can find out that the two scholars are the possibility of the relationship between advisors and advisees, the year when they start cooperation, the year of cooperation and the corresponding number of cooperation. </p>
                     <div >
                         <a class="button" href="#">download</a>
                     </div>
@@ -516,14 +509,14 @@ margin-top: 20px;
         <div class="col-sm-4 col-md-4">
             <div class="single-member effect-4">
                 <div class="member-info">
-                    <h3>Sophia</h3>
-                    <h5>ShowGilr</h5>
+                    <h3>Co-authorship</h3>
+                    <h5>Networks</h5>
                 </div>
                 <div class="member-image">
                     <img src="${pageContext.request.contextPath}/resource/data2.jpg" alt="Member">
                 </div>
                 <div class="more-info">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+                    <p>There is co-authorship network from DataBase systems and Logic Programming(DBLP).From this, we can construct a group of networks with equivalent sets of nodes, and we also find the number of advisee co-operatives, collaborators and the corresponding number of collaborations.</p>
                     <div >
                         <a class="button" href="#">download</a>
                     </div>
@@ -533,14 +526,14 @@ margin-top: 20px;
         <div class="col-sm-4 col-md-4">
             <div class="single-member effect-4">
                 <div class="member-info">
-                    <h3>Sophia</h3>
-                    <h5>ShowGilr</h5>
+                    <h3>Publication</h3>
+                    <h5>Record</h5>
                 </div>
                 <div class="member-image">
                     <img src="${pageContext.request.contextPath}/resource/data3.jpg" alt="Member">
                 </div>
                 <div class="more-info">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut . Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+                    <p>This dataset is collected from DBLP dataset.From this dataset, we learn scholars' publication record.We can find the year when scholars begin to publish papers, the year they publish their papers and the corresponding number of papers.</p>
                     <div >
                         <a class="button" href="#">download</a>
                     </div>
@@ -549,43 +542,28 @@ margin-top: 20px;
         </div>
     </div>
     <!--方法介绍-->
-    <div class="row fangfa">
+    <div class="row fangfa" style="padding-left: 100px;padding-right: 100px">
         <br />
-        <br />
-        <h2>method</h2>
-        <br /><br />
 
-        <p>This dataset is collected from DBLP dataset. From this dataset, We can find out that the two scholars are the possibility of the relationship between advisors and advisees, the year when they start cooperation, the year of cooperation and the corresponding number of cooperation. </p>
+        <h2>XGBOOST</h2>
+        <br />
+
+        <p class="text-left">XGBoost is short for "Extreme Gradient Boosting", where the term "Gradient Boosting" is proposed in the paper Greedy Function Approximation: A Gradient Boosting Machine, by Friedman.</p>
+        <p class="text-left">XGBoost is based on this original model. More importantly, it is developed with both deep consideration in terms of systems optimization and principles in machine learning. The goal of this library is to push the extreme of the computation limits of machines to provide a scalable, portable and accurate library.</p>
+        <p class="text-left">If you want to learn more about XGBoost， you can click this link:<a href="https://github.com/dmlc/xgboost/blob/master/doc/model.md" >https://github.com/dmlc/xgboost/blob/master/doc/model.md</a>
+        </p>
 
     </div>
 
     <%--<footer class="container-fluid foot-wrap">--%>
         <%--<!--采用container，使得页尾内容居中 -->--%>
         <%--<div class="container">--%>
-            <div class="row m_ft">
-                <div class="col-lg-6 col-sm-6 col-xs-6">
-                    <span class="glyphicon glyphicon-map-marker">address</span>
-                    <ul>
-                        <li><a href="#">Newsletter</a></li>
-                        <li><a href="#">RSS feed</a></li>
-                        <li><a href="#">RSS to Email</a></li>
-                        <li><a href="#">Product Hunt</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Pinterest</a></li>
-                        <li><a href="#">Google+</a></li>
-                    </ul>
-                </div>
-                <div class=" col-lg-6 col-sm-6 col-xs-6">
-                    <span class=" 	glyphicon glyphicon-earphone">phone</span>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Gallery</a></li>
-                        <li><a href="#">Templates</a></li>
-                        <li><a href="#">Resources</a></li>
-                        <li><a href="#">OPL Themes</a></li>
-                    </ul>
-                </div>
+            <div class="row m_ft text-left">
+                <h3>School of Software, Dalian University of Technology, Dalian 116620, China</h3>
+                <h3>©The Alpha Lab; TheAlphaLab.org</h3>
+                <h3>Contact: TheAlphaLab@outlook.com</h3>
+                <br/><br/>
+                <h3><em>Designed by Jiaying Liu, Ke Hou, Kaiqi Tian,Xinyu Zhou.</em></h3>
             </div>
 
             <%--</div><!--/.row -->--%>
