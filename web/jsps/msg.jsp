@@ -44,13 +44,13 @@
 
 		height: 20%;
 		/*line-height: 25px;*/
-		background-color: #efeae5;
-		border: 5px solid #efeae5;
+		background-color: #97e3ef;
+		border: 5px solid #97e3ef;
 	}
 	.divContent {
 		/*position: relative;*/
 		height:80%;
-		border: 5px solid #efeae5;
+		border: 5px solid #97e3ef;
 
 	}
 	.spanTitle {
