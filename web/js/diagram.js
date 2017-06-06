@@ -133,11 +133,11 @@ $(function() {
 
                 //teacher_cop--------------------------------------------------------------------------
                 var index=0;
-                data_teacher[0]={year:"",number:""};
+                data_teacher[0]={year:"",number:0};
                 for(index=1;index<result[1].length+1;index++){
                     data_teacher[index]={year:result[1][index-1].year,number:result[1][index-1].number};
                 }
-                data_teacher[index]={year:"",number:""};
+                data_teacher[index]={year:"",number:0};
 
                 var Stat = G2.Stat;
                 var chart = new G2.Chart({

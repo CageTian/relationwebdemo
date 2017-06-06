@@ -70,7 +70,7 @@
             </div-->
 
 
-            <div class="row">
+            <div class="row" style="display:none;">
                 <label class="col-sm-3 control-label">getReply-Email:</label>
                 <div class="col-sm-8">
                     <input type="hidden" name="reply_email" value=${sessionScope.get("sessionUser").email}>

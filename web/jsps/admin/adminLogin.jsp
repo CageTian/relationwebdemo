@@ -70,6 +70,6 @@
         </div>
     </div>
 </div>
-<a href=<c:url value='/UserReqServlet?method=showAllMes'/> >登陆</a>
+<%--<a href=<c:url value='/UserReqServlet?method=showAllMes'/> >登陆</a>--%>
 </body>
 </html>
