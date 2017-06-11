@@ -22,45 +22,7 @@
     }
 </style>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="touming">
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="welcome1.jsp">SCHOLAR</a>
-            </div>
-            <div id="searchlocation">
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">search</button>
-                </form>
-            </div>
-            <div class="collapse navbar-collapse">
-
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-user"></span> Sign up</a>
-                    </li>
-                    <li >
-                        <a href="#"><span class="glyphicon glyphicon-log-in"></span> Log in</a>
-                    </li>
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-home"></span>Home</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.nav-collapse -->
-        </div>
-        <!-- /.container -->
-    </div>
-</nav>
+<%@include file="/jsps/pager/header.jsp" %>
 <div class="container">
     <div style="margin: 80px 0 0 0">
         <c:forEach items="${pb.beanList}" var="userReq">

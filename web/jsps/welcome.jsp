@@ -330,7 +330,7 @@
     /*background-color: #535c5e;*/
 /*}*/
         .m_ft{
-
+font-size: 12px;
             background-color: #373f48;
 margin-top: 20px;
             padding-left: 100px;
@@ -563,7 +563,7 @@ margin-top: 20px;
                 <h3>©The Alpha Lab; TheAlphaLab.org</h3>
                 <h3>Contact: TheAlphaLab@outlook.com</h3>
                 <br/><br/>
-                <h3><em>Designed by Jiaying Liu, Ke Hou, Kaiqi Tian,Xinyu Zhou.</em></h3>
+                <h3><em>Designed by Ke Hou</em></h3>
             </div>
 
             <%--</div><!--/.row -->--%>

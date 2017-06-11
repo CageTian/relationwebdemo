@@ -30,7 +30,7 @@
 		font-family: SimSun;
 	}
 	
-	.divBody {
+	.m_p {
 		position: absolute;
 		width: 50%;
 		height: 70%;
@@ -44,13 +44,13 @@
 
 		height: 20%;
 		/*line-height: 25px;*/
-		background-color: #97e3ef;
-		border: 5px solid #97e3ef;
+		background-color: #bdbfc2;
+		border: 5px solid #bdbfc2;
 	}
 	.divContent {
 		/*position: relative;*/
 		height:80%;
-		border: 5px solid #97e3ef;
+		border: 5px solid #bdbfc2;
 
 	}
 	.spanTitle {
@@ -73,22 +73,26 @@ a:hover {color:#FF6600; text-decoration: underline;}
   </head>
   
   <body>
+  <%@include file="/jsps/pager/header.jsp" %>
   <c:choose>
   	<c:when test="${code eq 'success' }"><%--如果code是功能，它显示对号图片 --%>
   		<c:set var="img" value="/resource/success.png"/>
-  		<c:set var="title" value="成功"/>
+  		<c:set var="title" value="SUCCESS"/>
   	</c:when>
   	<c:when test="${code eq 'error' }"><%--如果code是功能，它显示错号图片 --%>
   		<c:set var="img" value="/resource/fail.png"/>
-  		<c:set var="title" value="失败"/>
+  		<c:set var="title" value="FAIL"/>
   	</c:when>
   	
   </c:choose>
-<div class="divBody">
-	<div class="divTitle">
-		<span class="spanTitle">${title }</span>
+<div class="panel panel-default m_p">
+	<div class="panel-heading">
+		<%--<span class="spanTitle">--%>
+			<h3 class="panel-title">
+				${title }</h3>
+			<%--</span>--%>
 	</div>
-	<div class="divContent ">
+	<div class="panel-body">
 	  <div style="margin: 20px;">
 		<img  src="<c:url value='${img }'/>"/>
 		<span style="font-size: 30px; color: #c30; font-weight: 900;">${msg }</span>
@@ -97,7 +101,7 @@ a:hover {color:#FF6600; text-decoration: underline;}
 		<br/>
 		<br/>
 		<span style="margin-left: 50px;"><a target="_top" href="<c:url value='/jsps/user/login.jsp'/>">LOGIN</a></span>
-		<span style="margin-left: 50px;"><a target="_top" href="<c:url value='/jsps/user/welcome.jsp'/>">HOME</a></span>
+		<span style="margin-left: 50px;"><a target="_top" href="${pageContext.request.contextPath}/jsps/welcome.jsp">HOME</a></span>
 	  </div>
 	</div>
 </div>
