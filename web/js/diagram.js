@@ -39,7 +39,7 @@ $(function() {
                         fontWeight: 'normal', // 文本粗细
                     },
                     number: {
-                        alias: 'PAPER NUMBER',
+                        alias: 'PUBLICATIONS',
                         fill: '#cecece', // 文本的颜色
                         fontSize: '12', // 文本大小
                         fontWeight: 'normal', // 文本粗细
