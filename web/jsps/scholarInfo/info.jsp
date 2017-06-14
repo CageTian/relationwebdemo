@@ -173,6 +173,9 @@ ul.nav-tabs.affix{
         display: table-cell;
         vertical-align:middle;
     }
+   #coworker{
+color: white;
+   }
 </style>
 <body>
 
@@ -228,7 +231,7 @@ ul.nav-tabs.affix{
                 <div id="tree">
                 </div>
         </div>
-
+    </div>
     <div class="row" >
 
         <div class="col-sm-10 col-sm-offset-1" >
@@ -249,7 +252,7 @@ ul.nav-tabs.affix{
 
     </div>
     <div class="row" >
-        <div class="col-sm-5 col-sm-offset-1" id="coworker">
+        <div class="col-sm-5 col-sm-offset-1" id="coworker" style="color: white">
             <div class="m_title"><h4>Ego Network</h4></div>
         </div>
         <div class="col-sm-5 web" >
@@ -259,7 +262,9 @@ ul.nav-tabs.affix{
 
 
 </div>
-
+<script>
+    $(".treetitle").val($("#content").val().replace(/[\r\n]/g,""));//去掉回车换行
+</script>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 

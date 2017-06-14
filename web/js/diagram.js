@@ -87,7 +87,7 @@ $(function() {
                     forceFit: true,
                     height: 450,
                     plotCfg: {
-                        margin: [35, 140, 35, 0]
+                        margin: [35, 70, 35, 70]
                     }
                 });
                 chart.source(datacoworker, {
@@ -249,7 +249,7 @@ $(function() {
                 edgeView.edge()
                     .position(Stat.link('source*target',nodes))
                     .shape('smooth')
-                    .color('#a8a8a8');
+                    .color('#cdcdcd');
 
 // 创建节点视图
                 var nodeView = chart.createView();
@@ -265,11 +265,19 @@ $(function() {
                 });
 
                 nodeView.point().position('x*y').color('blue').size(3).label('name', {
+
+
+                    /*custom: true,
+                    renderer: function(text, item, index)  {
+                        // text 为每条记录 x 属性的值
+                        // item 为映射后的每条数据记录，是一个对象，可以从里面获取你想要的数据信息
+                        // index 为每条记录的索引
+                        return '<h style="color: #e9e9e9;" class="treetitle">' + text + '</h>' ; // 自定义 html
+
+                    },*/
                     offset: 5,
                     labelEmit: true,
-                    fill: '#fff', // 文本的颜色
-                    fontSize: '12', // 文本大小
-                    fontWeight: 'bold', // 文本粗细
+                    label: {fill: '#fff'}
                 })
                     .tooltip('name');
                 chart.render();

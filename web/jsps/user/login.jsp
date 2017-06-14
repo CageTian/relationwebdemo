@@ -48,7 +48,7 @@
         <span class="icon-bar"></span>
       </button>
       <!-- 确保无论是宽屏还是窄屏，navbar-brand都显示 -->
-      <a href="welcome.jsp" class="navbar-brand">Scholar</a>
+      <a href="welcome.jsp" class="navbar-brand">SHIFU</a>
     </div>
     <!-- 屏幕宽度小于768px时，div.navbar-responsive-collapse容器里的内容都会隐藏，显示icon-bar图标，当点击icon-bar图标时，再展开。屏幕大于768px时，默认显示。 -->
     <!--<div class="collapse navbar-collapse navbar-responsive-collapse">
