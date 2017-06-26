@@ -286,70 +286,7 @@ $(function() {
         }
     });
 
-//srudent_times
-    var datastu = [
-        {student_name: '问题 33331', number:2,percent: 0},
-        {student_name: '问题 2', number:2,percent: 0},
-        {student_name: '问题 3', number:4,percent: 0},
-        {student_name: '问题 4', number:5,percent: 0},
-        {student_name: '问题 5', number:6,percent: 0},
-        {student_name: '问题 6', number:6,percent: 0},
-        {student_name: '问题 7', number:8,percent: 0},
-        {student_name: '问题 8', number:9,percent: 0}
-    ];
-    var max=datastu[0].number;
-    for(var i=0;i<datastu.length;i++)
-    {
-        if(max<datastu[i].number)
-            max=datastu[i].number;
-    }
-    max=max+2;
-    for(var i=0;i<datastu.length;i++)
-    {
-        //data[i].percent=(data[i].number/max).toFixed(1);
-        datastu[i].percent=datastu[i].number/max;
-    }
-    var Frame = G2.Frame;
-    var frame = new Frame(datastu); // 加工数据
-    frame.addCol('odd',function(obj,index){
-        return index % 2;
-    });
 
-    var chart = new G2.Chart({
-        id: 'student',
-        forceFit: true,
-        height: 450
-    });
-    var defs = {
-        'percent': {min: 0,max: 1},
-        'odd': {type: 'cat'}
-    };
-    chart.source(frame,defs);
-    chart.tooltip(true,{
-        custom: true,
-        map: {
-            value: 'number',
-            name: 'Number of cooperation',
-            title: 'student_name'
-        }
-    });
-    chart.legend(false);
-    chart.coord('polar',{inner: 0.1}).transpose();
-    chart.interval().position('student_name*percent')
-        .color('odd',function(value){
-            return ['rgb(224,74,116)', 'rgb(211,0,57)'][value];
-        })
-        .label('number',{offset: -5});
-
-    frame.each(function(obj){
-        chart.guide().text([obj.student_name,0],obj.student_name + ' ',{
-            textAlign: 'right',
-            fill: '#cecece', // 文本的颜色
-            fontSize: '12', // 文本大小
-            fontWeight: 'normal', // 文本粗细
-        });
-    });
-    chart.render();
 
 //year-paperNumber
 
